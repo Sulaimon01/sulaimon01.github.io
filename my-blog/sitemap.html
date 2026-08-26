@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SK2537KX5K">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SK2537KX5K');
+</script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sitemap - DevBlog</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Explore the sitemap of DevBlog to find all our web development tutorials, articles, and resources organized by category and topic." />
+    <meta name="keywords" content="sitemap, devblog, web development, tutorials, articles" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://yourdomain.com/sitemap.html" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <style>
+        /* ============================================
+           CSS VARIABLES (Light & Dark Themes)
+           ============================================ */
+        :root {
+            /* Light Theme (Default) */
+            --bg-primary: #F8FAFC;
+            --bg-secondary: #FFFFFF;
+            --bg-card: #FFFFFF;
+            --text-primary: #111827;
+            --text-secondary: #64748B;
+            --text-white: #FFFFFF;
+            --border-color: #E5E7EB;
+            --primary: #6366F1;
+            --primary-hover: #4F46E5;
+            --success: #10B981;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --transition: 0.3s ease;
+            --max-width: 1200px;
+            --content-width: 800px;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0F172A;
+            --bg-secondary: #1E293B;
+            --bg-card: #1E293B;
+            --text-primary: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --text-white: #F1F5F9;
+            --border-color: #334155;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            transition: background var(--transition), color var(--transition);
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+        }
+
+        a:hover {
+            color: var(--primary-hover);
+        }
+
+        /* ============================================
+           CONTAINERS
+           ============================================ */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .content-container {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        .navbar {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background var(--transition), border-color var(--transition);
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        [data-theme="dark"] .navbar {
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color var(--transition);
+        }
+
+        .navbar .logo span {
+            color: var(--primary);
+        }
+
+        .navbar .logo .logo-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+            background: var(--bg-primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Search */
+        .search-wrapper {
+            position: relative;
+        }
+
+        .search-wrapper input {
+            padding: 8px 14px 8px 36px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all var(--transition);
+            width: 180px;
+            outline: none;
+        }
+
+        .search-wrapper input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .search-wrapper input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .search-wrapper .search-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all var(--transition);
+            color: var(--text-secondary);
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        /* ============================================
+           SITEMAP PAGE STYLES
+           ============================================ */
+        .sitemap-page {
+            padding: 60px 0 80px;
+        }
+
+        .sitemap-page .page-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .sitemap-page .page-header .badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .sitemap-page .page-header h1 {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+        }
+
+        .sitemap-page .page-header h1 span {
+            color: var(--primary);
+        }
+
+        .sitemap-page .page-header p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .sitemap-page .last-updated {
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            padding: 12px;
+            background: var(--bg-primary);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        /* Sitemap Grid */
+        .sitemap-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .sitemap-grid .sitemap-column {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            transition: background var(--transition), border-color var(--transition);
+        }
+
+        .sitemap-grid .sitemap-column:hover {
+            border-color: var(--primary);
+        }
+
+        .sitemap-grid .sitemap-column .col-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .sitemap-grid .sitemap-column .col-header .col-icon {
+            font-size: 24px;
+        }
+
+        .sitemap-grid .sitemap-column .col-header h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .sitemap-grid .sitemap-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sitemap-grid .sitemap-column ul li {
+            padding: 4px 0;
+        }
+
+        .sitemap-grid .sitemap-column ul li a {
+            color: var(--text-secondary);
+            font-size: 15px;
+            transition: color var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sitemap-grid .sitemap-column ul li a:hover {
+            color: var(--primary);
+        }
+
+        .sitemap-grid .sitemap-column ul li a .arrow {
+            font-size: 12px;
+            opacity: 0.5;
+            transition: opacity var(--transition);
+        }
+
+        .sitemap-grid .sitemap-column ul li a:hover .arrow {
+            opacity: 1;
+        }
+
+        .sitemap-grid .sitemap-column .sub-links {
+            margin-left: 20px;
+            margin-top: 4px;
+        }
+
+        .sitemap-grid .sitemap-column .sub-links li {
+            padding: 2px 0;
+        }
+
+        .sitemap-grid .sitemap-column .sub-links li a {
+            font-size: 14px;
+            color: var(--text-secondary);
+            opacity: 0.8;
+        }
+
+        .sitemap-grid .sitemap-column .sub-links li a:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 48px 0 24px;
+            margin-top: 0;
+            transition: background var(--transition), border-color var(--transition);
+        }
+
+        .footer .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+            gap: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .footer .footer-brand .footer-logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            transition: color var(--transition);
+        }
+
+        .footer .footer-brand .footer-logo span {
+            color: var(--primary);
+        }
+
+        .footer .footer-brand .footer-logo .logo-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .footer .footer-brand p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            max-width: 320px;
+            line-height: 1.6;
+        }
+
+        .footer .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .footer .footer-column h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color var(--transition);
+        }
+
+        .footer .footer-column a {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 14px;
+            padding: 4px 0;
+            transition: color var(--transition);
+        }
+
+        .footer .footer-column a:hover {
+            color: var(--primary);
+        }
+
+        .footer .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 24px;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .footer .footer-bottom p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 992px) {
+            .sitemap-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
+
+            .footer .footer-content {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .footer .footer-brand p {
+                max-width: 100%;
+            }
+
+            .footer .footer-links {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                padding: 12px 0;
+                gap: 4px;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                width: 100%;
+                padding: 10px 14px;
+            }
+
+            .search-wrapper input {
+                width: 140px;
+            }
+
+            .sitemap-page {
+                padding: 40px 0 60px;
+            }
+
+            .sitemap-page .page-header h1 {
+                font-size: 30px;
+            }
+
+            .sitemap-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+
+            .sitemap-grid .sitemap-column {
+                padding: 16px 20px;
+            }
+
+            .footer {
+                padding: 32px 0 16px;
+            }
+
+            .footer .footer-links {
+                grid-template-columns: 1fr 1fr;
+                gap: 24px;
+            }
+
+            .footer .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar .container {
+                flex-wrap: wrap;
+            }
+
+            .nav-actions {
+                margin-left: auto;
+            }
+
+            .search-wrapper input {
+                width: 120px;
+                font-size: 13px;
+            }
+
+            .sitemap-page .page-header h1 {
+                font-size: 26px;
+            }
+
+            .sitemap-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .footer .footer-links {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .footer .footer-content {
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+               NAVIGATION
+            ============================================ -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">&lt;/&gt;</span>
+                Dev<span>Blog</span>
+            </a>
+
+            <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="index.html?category=CSS">CSS</a>
+                <a href="index.html?category=HTML">HTML</a>
+                <a href="index.html?category=JavaScript">JavaScript</a>
+                <a href="index.html?category=Tutorials">Tutorials</a>
+            </div>
+
+            <div class="nav-actions">
+                <div class="search-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInput" placeholder="Search posts..." />
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌓</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================
+               SITEMAP PAGE CONTENT
+            ============================================ -->
+    <main>
+        <div class="container">
+            <div class="sitemap-page">
+
+                <!-- Header -->
+                <div class="page-header">
+                    <span class="badge">Sitemap</span>
+                    <h1>Explore <span>DevBlog</span></h1>
+                    <p>Find all our web development tutorials, articles, and resources organized by category and topic.</p>
+                </div>
+
+                <div class="last-updated">
+                    📅 Last Updated: August 24, 2026
+                </div>
+
+                <!-- Sitemap Grid -->
+                <div class="sitemap-grid">
+
+                    <!-- Column 1: Categories -->
+                    <div class="sitemap-column">
+                        <div class="col-header">
+                            <span class="col-icon">📂</span>
+                            <h2>Categories</h2>
+                        </div>
+                        <ul>
+                            <li><a href="index.html?category=CSS">CSS <span class="arrow">→</span></a></li>
+                            <li><a href="index.html?category=HTML">HTML <span class="arrow">→</span></a></li>
+                            <li><a href="index.html?category=JavaScript">JavaScript <span class="arrow">→</span></a></li>
+                            <li><a href="index.html?category=Tutorials">Tutorials <span class="arrow">→</span></a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 2: Company -->
+                    <div class="sitemap-column">
+                        <div class="col-header">
+                            <span class="col-icon">🏢</span>
+                            <h2>Company</h2>
+                        </div>
+                        <ul>
+                            <li><a href="about.html">About Us <span class="arrow">→</span></a></li>
+                            <li><a href="contact.html">Contact Us <span class="arrow">→</span></a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 3: Legal -->
+                    <div class="sitemap-column">
+                        <div class="col-header">
+                            <span class="col-icon">⚖️</span>
+                            <h2>Legal</h2>
+                        </div>
+                        <ul>
+                            <li><a href="privacy.html">Privacy Policy <span class="arrow">→</span></a></li>
+                            <li><a href="terms.html">Terms of Service <span class="arrow">→</span></a></li>
+                            <li><a href="disclaimer.html">Disclaimer <span class="arrow">→</span></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- XML Sitemap Notice -->
+                <div style="margin-top: 40px; padding: 20px 28px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius); text-align: center;">
+                    <p style="color: var(--text-secondary); font-size: 15px;">
+                        📍 For search engines: <a href="sitemap.xml" style="font-weight: 600;">View XML Sitemap</a> 
+                        <span style="color: var(--text-secondary); opacity: 0.5; margin: 0 8px;">|</span> 
+                        <a href="robots.txt" style="font-weight: 600;">View robots.txt</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- ============================================
+               FOOTER
+            ============================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-icon">&lt;/&gt;</span>
+                        Dev<span>Blog</span>
+                    </div>
+                    <p>Your trusted source for web development tutorials, coding tips, and practical guides for developers of all skill levels.</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Categories</h4>
+                        <a href="index.html?category=CSS">CSS</a>
+                        <a href="index.html?category=HTML">HTML</a>
+                        <a href="index.html?category=JavaScript">JavaScript</a>
+                        <a href="index.html?category=Tutorials">Tutorials</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="about.html">About Us</a>
+                        <a href="contact.html">Contact Us</a>
+                        <a href="privacy.html">Privacy Policy</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <a href="terms.html">Terms of Service</a>
+                        <a href="disclaimer.html">Disclaimer</a>
+                        <a href="sitemap.html">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 DevBlog. All rights reserved.</p>
+                <p>Built with ❤️ for developers</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================
+        // THEME MANAGEMENT
+        // ============================================
+        function getTheme() {
+            return localStorage.getItem('blog-theme') || 'light';
+        }
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('blog-theme', theme);
+            const toggle = document.getElementById('themeToggle');
+            if (toggle) toggle.textContent = theme === 'dark' ? '☀️' : '🌓';
+        }
+
+        setTheme(getTheme());
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('themeToggle');
+            if (toggle) {
+                toggle.addEventListener('click', () => {
+                    const current = getTheme();
+                    setTheme(current === 'dark' ? 'light' : 'dark');
+                });
+            }
+
+            // Mobile menu
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', () => {
+                    navLinks.classList.toggle('open');
+                });
+
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('open');
+                    });
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

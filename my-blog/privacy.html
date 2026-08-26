@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SK2537KX5K">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SK2537KX5K');
+</script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy - DevBlog</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Read DevBlog's Privacy Policy to understand how we collect, use, and protect your personal information when you visit our website." />
+    <meta name="keywords" content="privacy policy, data protection, GDPR, privacy, DevBlog" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://yourdomain.com/privacy.html" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <style>
+        /* ============================================
+           CSS VARIABLES (Light & Dark Themes)
+           ============================================ */
+        :root {
+            /* Light Theme (Default) */
+            --bg-primary: #F8FAFC;
+            --bg-secondary: #FFFFFF;
+            --bg-card: #FFFFFF;
+            --text-primary: #111827;
+            --text-secondary: #64748B;
+            --text-white: #FFFFFF;
+            --border-color: #E5E7EB;
+            --primary: #6366F1;
+            --primary-hover: #4F46E5;
+            --success: #10B981;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --transition: 0.3s ease;
+            --max-width: 1200px;
+            --content-width: 800px;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0F172A;
+            --bg-secondary: #1E293B;
+            --bg-card: #1E293B;
+            --text-primary: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --text-white: #F1F5F9;
+            --border-color: #334155;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            transition: background var(--transition), color var(--transition);
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+        }
+
+        a:hover {
+            color: var(--primary-hover);
+        }
+
+        /* ============================================
+           CONTAINERS
+           ============================================ */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .content-container {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        .navbar {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background var(--transition), border-color var(--transition);
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        [data-theme="dark"] .navbar {
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color var(--transition);
+        }
+
+        .navbar .logo span {
+            color: var(--primary);
+        }
+
+        .navbar .logo .logo-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+            background: var(--bg-primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Search */
+        .search-wrapper {
+            position: relative;
+        }
+
+        .search-wrapper input {
+            padding: 8px 14px 8px 36px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all var(--transition);
+            width: 180px;
+            outline: none;
+        }
+
+        .search-wrapper input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .search-wrapper input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .search-wrapper .search-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all var(--transition);
+            color: var(--text-secondary);
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        /* ============================================
+           PRIVACY PAGE STYLES
+           ============================================ */
+        .privacy-page {
+            padding: 60px 0 80px;
+        }
+
+        .privacy-page .page-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .privacy-page .page-header .badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .privacy-page .page-header h1 {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+        }
+
+        .privacy-page .page-header h1 span {
+            color: var(--primary);
+        }
+
+        .privacy-page .page-header p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .privacy-page .last-updated {
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            padding: 12px;
+            background: var(--bg-primary);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .privacy-page .privacy-section {
+            margin-bottom: 32px;
+            padding: 28px 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            transition: background var(--transition), border-color var(--transition);
+        }
+
+        .privacy-page .privacy-section:hover {
+            border-color: var(--primary);
+        }
+
+        .privacy-page .privacy-section h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .privacy-page .privacy-section h2 .icon {
+            font-size: 28px;
+        }
+
+        .privacy-page .privacy-section p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        .privacy-page .privacy-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .privacy-page .privacy-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0;
+        }
+
+        .privacy-page .privacy-section ul li {
+            color: var(--text-secondary);
+            font-size: 15px;
+            padding: 6px 0 6px 28px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .privacy-page .privacy-section ul li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .privacy-page .privacy-section .highlight-box {
+            background: var(--bg-primary);
+            border-left: 4px solid var(--primary);
+            padding: 16px 20px;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            margin: 12px 0;
+        }
+
+        .privacy-page .privacy-section .highlight-box p {
+            margin-bottom: 0;
+            font-size: 15px;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 24px 32px;
+            margin-bottom: 40px;
+        }
+
+        .toc h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px 24px;
+        }
+
+        .toc ul li a {
+            color: var(--text-secondary);
+            font-size: 14px;
+            padding: 4px 0;
+            display: block;
+            transition: color var(--transition);
+        }
+
+        .toc ul li a:hover {
+            color: var(--primary);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 48px 0 24px;
+            margin-top: 0;
+            transition: background var(--transition), border-color var(--transition);
+        }
+
+        .footer .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+            gap: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .footer .footer-brand .footer-logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            transition: color var(--transition);
+        }
+
+        .footer .footer-brand .footer-logo span {
+            color: var(--primary);
+        }
+
+        .footer .footer-brand .footer-logo .logo-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .footer .footer-brand p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            max-width: 320px;
+            line-height: 1.6;
+        }
+
+        .footer .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .footer .footer-column h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color var(--transition);
+        }
+
+        .footer .footer-column a {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 14px;
+            padding: 4px 0;
+            transition: color var(--transition);
+        }
+
+        .footer .footer-column a:hover {
+            color: var(--primary);
+        }
+
+        .footer .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 24px;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .footer .footer-bottom p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 992px) {
+            .footer .footer-content {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .footer .footer-brand p {
+                max-width: 100%;
+            }
+
+            .footer .footer-links {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                padding: 12px 0;
+                gap: 4px;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                width: 100%;
+                padding: 10px 14px;
+            }
+
+            .search-wrapper input {
+                width: 140px;
+            }
+
+            .privacy-page {
+                padding: 40px 0 60px;
+            }
+
+            .privacy-page .page-header h1 {
+                font-size: 30px;
+            }
+
+            .privacy-page .privacy-section {
+                padding: 20px;
+            }
+
+            .privacy-page .privacy-section h2 {
+                font-size: 20px;
+            }
+
+            .toc ul {
+                grid-template-columns: 1fr;
+            }
+
+            .footer {
+                padding: 32px 0 16px;
+            }
+
+            .footer .footer-links {
+                grid-template-columns: 1fr 1fr;
+                gap: 24px;
+            }
+
+            .footer .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar .container {
+                flex-wrap: wrap;
+            }
+
+            .nav-actions {
+                margin-left: auto;
+            }
+
+            .search-wrapper input {
+                width: 120px;
+                font-size: 13px;
+            }
+
+            .privacy-page .page-header h1 {
+                font-size: 26px;
+            }
+
+            .privacy-page .privacy-section {
+                padding: 16px;
+            }
+
+            .footer .footer-links {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .footer .footer-content {
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+               NAVIGATION
+            ============================================ -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">&lt;/&gt;</span>
+                Dev<span>Blog</span>
+            </a>
+
+            <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="index.html?category=CSS">CSS</a>
+                <a href="index.html?category=HTML">HTML</a>
+                <a href="index.html?category=JavaScript">JavaScript</a>
+                <a href="index.html?category=Tutorials">Tutorials</a>
+            </div>
+
+            <div class="nav-actions">
+                <div class="search-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInput" placeholder="Search posts..." />
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌓</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================
+               PRIVACY PAGE CONTENT
+            ============================================ -->
+    <main>
+        <div class="container">
+            <div class="privacy-page">
+
+                <!-- Header -->
+                <div class="page-header">
+                    <span class="badge">Privacy Policy</span>
+                    <h1>Your Privacy <span>Matters</span></h1>
+                    <p>At DevBlog, we take your privacy seriously. This policy explains how we collect, use, and protect your personal information.</p>
+                </div>
+
+                <div class="last-updated">
+                    📅 Last Updated: August 24, 2026
+                </div>
+
+                <!-- Table of Contents -->
+                <div class="toc">
+                    <h3>📑 Table of Contents</h3>
+                    <ul>
+                        <li><a href="#information-we-collect">1. Information We Collect</a></li>
+                        <li><a href="#how-we-use">2. How We Use Your Information</a></li>
+                        <li><a href="#cookies">3. Cookies & Tracking</a></li>
+                        <li><a href="#third-party">4. Third-Party Services</a></li>
+                        <li><a href="#data-security">5. Data Security</a></li>
+                        <li><a href="#your-rights">6. Your Rights</a></li>
+                        <li><a href="#children">7. Children's Privacy</a></li>
+                        <li><a href="#changes">8. Changes to This Policy</a></li>
+                        <li><a href="#contact">9. Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Section 1 -->
+                <div class="privacy-section" id="information-we-collect">
+                    <h2><span class="icon">📋</span> 1. Information We Collect</h2>
+                    <p>We collect information to provide better services to our users. The types of information we collect include:</p>
+                    <ul>
+                        <li><strong>Personal Information:</strong> Name, email address, and any information you provide when contacting us or subscribing to our newsletter.</li>
+                        <li><strong>Usage Data:</strong> Information about how you interact with our website, including pages visited, time spent, and referring URLs.</li>
+                        <li><strong>Device Information:</strong> Browser type, operating system, IP address, and device type.</li>
+                        <li><strong>Cookies:</strong> Small text files stored on your device to enhance your browsing experience.</li>
+                    </ul>
+                    <div class="highlight-box">
+                        <p>🔒 We only collect information that is necessary to provide and improve our services. We never sell your personal data to third parties.</p>
+                    </div>
+                </div>
+
+                <!-- Section 2 -->
+                <div class="privacy-section" id="how-we-use">
+                    <h2><span class="icon">⚙️</span> 2. How We Use Your Information</h2>
+                    <p>We use the information we collect to:</p>
+                    <ul>
+                        <li>Provide, maintain, and improve our website and services</li>
+                        <li>Send you updates, newsletters, and marketing communications (with your consent)</li>
+                        <li>Respond to your comments, questions, and feedback</li>
+                        <li>Analyze usage patterns to improve user experience</li>
+                        <li>Prevent fraud and ensure the security of our website</li>
+                        <li>Comply with legal obligations</li>
+                    </ul>
+                </div>
+
+                <!-- Section 3 -->
+                <div class="privacy-section" id="cookies">
+                    <h2><span class="icon">🍪</span> 3. Cookies &amp; Tracking</h2>
+                    <p>We use cookies and similar tracking technologies to enhance your browsing experience. Cookies help us:</p>
+                    <ul>
+                        <li>Remember your preferences and theme settings</li>
+                        <li>Analyze website traffic and usage patterns</li>
+                        <li>Provide personalized content and recommendations</li>
+                    </ul>
+                    <p>You can control cookie settings through your browser preferences. Most browsers allow you to block or delete cookies, but this may affect some features of our website.</p>
+                    <div class="highlight-box">
+                        <p>📌 We use essential cookies for functionality and optional cookies for analytics and personalization. You can opt out of non-essential cookies at any time.</p>
+                    </div>
+                </div>
+
+                <!-- Section 4 -->
+                <div class="privacy-section" id="third-party">
+                    <h2><span class="icon">🔗</span> 4. Third-Party Services</h2>
+                    <p>We use third-party services to enhance our website and provide better services. These services may collect information about you:</p>
+                    <ul>
+                        <li><strong>Firebase:</strong> We use Firebase for authentication, database, and analytics. Firebase may collect usage data as described in their privacy policy.</li>
+                        <li><strong>Google Analytics:</strong> We use Google Analytics to analyze website traffic and user behavior. Google Analytics uses cookies and collects anonymized data.</li>
+                        <li><strong>Google Fonts:</strong> We use Google Fonts for typography. Google may collect IP addresses when fonts are requested.</li>
+                    </ul>
+                    <p>These third-party services have their own privacy policies. We encourage you to review them before using our website.</p>
+                </div>
+
+                <!-- Section 5 -->
+                <div class="privacy-section" id="data-security">
+                    <h2><span class="icon">🛡️</span> 5. Data Security</h2>
+                    <p>We take data security seriously and implement appropriate technical and organizational measures to protect your personal information:</p>
+                    <ul>
+                        <li><strong>Encryption:</strong> All data transmitted between your browser and our servers is encrypted using SSL/TLS.</li>
+                        <li><strong>Access Control:</strong> Only authorized personnel have access to personal data.</li>
+                        <li><strong>Regular Audits:</strong> We regularly review our security practices to ensure compliance with industry standards.</li>
+                    </ul>
+                    <p>While we strive to protect your data, no method of transmission over the internet is 100% secure. We cannot guarantee absolute security.</p>
+                </div>
+
+                <!-- Section 6 -->
+                <div class="privacy-section" id="your-rights">
+                    <h2><span class="icon">⚖️</span> 6. Your Rights</h2>
+                    <p>Depending on your location, you may have certain rights regarding your personal information:</p>
+                    <ul>
+                        <li><strong>Access:</strong> Request access to your personal data</li>
+                        <li><strong>Correction:</strong> Request correction of inaccurate data</li>
+                        <li><strong>Deletion:</strong> Request deletion of your personal data</li>
+                        <li><strong>Restriction:</strong> Request restriction of processing</li>
+                        <li><strong>Portability:</strong> Request transfer of your data to another service</li>
+                        <li><strong>Objection:</strong> Object to the processing of your data</li>
+                    </ul>
+                    <p>To exercise these rights, please <a href="contact.html">contact us</a> with your request. We will respond within 30 days.</p>
+                </div>
+
+                <!-- Section 7 -->
+                <div class="privacy-section" id="children">
+                    <h2><span class="icon">👶</span> 7. Children's Privacy</h2>
+                    <p>Our website is not directed at children under the age of 13. We do not knowingly collect personal information from children. If you are a parent or guardian and believe your child has provided us with personal information, please contact us and we will delete it.</p>
+                </div>
+
+                <!-- Section 8 -->
+                <div class="privacy-section" id="changes">
+                    <h2><span class="icon">📝</span> 8. Changes to This Policy</h2>
+                    <p>We may update this privacy policy from time to time to reflect changes in our practices or legal requirements. We will notify you of any material changes by posting the updated policy on this page with a new "Last Updated" date.</p>
+                    <p>We encourage you to review this policy periodically. Continued use of our website constitutes acceptance of the updated policy.</p>
+                </div>
+
+                <!-- Section 9 -->
+                <div class="privacy-section" id="contact" style="border-color: var(--primary);">
+                    <h2><span class="icon">📧</span> 9. Contact Us</h2>
+                    <p>If you have any questions, concerns, or requests regarding this privacy policy or your personal data, please contact us:</p>
+                    <p style="margin-top: 12px;">
+                        <strong>Email:</strong> <a href="mailto:privacy@devblog.com">privacy@devblog.com</a><br />
+                        <strong>Contact Form:</strong> <a href="contact.html">Contact Us</a>
+                    </p>
+                    <div class="highlight-box">
+                        <p>📬 We aim to respond to all inquiries within 24-48 hours.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- ============================================
+               FOOTER
+            ============================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-icon">&lt;/&gt;</span>
+                        Dev<span>Blog</span>
+                    </div>
+                    <p>Your trusted source for web development tutorials, coding tips, and practical guides for developers of all skill levels.</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Categories</h4>
+                        <a href="index.html?category=CSS">CSS</a>
+                        <a href="index.html?category=HTML">HTML</a>
+                        <a href="index.html?category=JavaScript">JavaScript</a>
+                        <a href="index.html?category=Tutorials">Tutorials</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="about.html">About Us</a>
+                        <a href="contact.html">Contact Us</a>
+                        <a href="privacy.html">Privacy Policy</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <a href="terms.html">Terms of Service</a>
+                        <a href="disclaimer.html">Disclaimer</a>
+                        <a href="sitemap.html">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 DevBlog. All rights reserved.</p>
+                <p>Built with ❤️ for developers</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================
+        // THEME MANAGEMENT
+        // ============================================
+        function getTheme() {
+            return localStorage.getItem('blog-theme') || 'light';
+        }
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('blog-theme', theme);
+            const toggle = document.getElementById('themeToggle');
+            if (toggle) toggle.textContent = theme === 'dark' ? '☀️' : '🌓';
+        }
+
+        setTheme(getTheme());
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('themeToggle');
+            if (toggle) {
+                toggle.addEventListener('click', () => {
+                    const current = getTheme();
+                    setTheme(current === 'dark' ? 'light' : 'dark');
+                });
+            }
+
+            // Mobile menu
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', () => {
+                    navLinks.classList.toggle('open');
+                });
+
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('open');
+                    });
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

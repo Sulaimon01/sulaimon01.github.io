@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevBlog Admin - Settings</title>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js">
+    </script>
+
+    <style>
+        /* ============================================
+                   RESET & BASE
+                ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            color: #1a202c;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ============================================
+                   SIDEBAR
+                ============================================ */
+        .sidebar {
+            width: 250px;
+            background: #1a202c;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .sidebar .logo {
+            padding: 24px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .sidebar .logo span {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 16px;
+            color: white;
+        }
+
+        .sidebar nav {
+            padding: 20px 0;
+            flex: 1;
+        }
+
+        .sidebar nav a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            color: #a0aec0;
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+            font-size: 15px;
+        }
+
+        .sidebar nav a:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+        }
+
+        .sidebar nav a.active {
+            background: rgba(102, 126, 234, 0.15);
+            color: white;
+            border-left-color: #667eea;
+        }
+
+        .sidebar nav a span {
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .sidebar-bottom {
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .sidebar-bottom a {
+            display: block;
+            padding: 10px 0;
+            color: #a0aec0;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+
+        .sidebar-bottom a:hover {
+            color: white;
+        }
+
+        .sidebar-bottom .logout-btn {
+            color: #fc8181;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 14px;
+            padding: 10px 0;
+            display: block;
+            width: 100%;
+            text-align: left;
+            font-family: inherit;
+        }
+
+        .sidebar-bottom .logout-btn:hover {
+            color: #feb2b2;
+        }
+
+        /* ============================================
+                   MAIN CONTENT
+                ============================================ */
+        .main-content {
+            margin-left: 250px;
+            flex: 1;
+            min-height: 100vh;
+            padding: 0 32px 32px 32px;
+        }
+
+        /* ============================================
+                   TOP BAR
+                ============================================ */
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 12px;
+            background: #f0f2f5;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .topbar .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #1a202c;
+            cursor: pointer;
+            padding: 4px 8px;
+        }
+
+        .topbar h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .topbar .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .topbar .user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .topbar .user .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .topbar .user strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .topbar .user small {
+            font-size: 12px;
+            color: #718096;
+        }
+
+        /* ============================================
+                   SETTINGS FORM
+                ============================================ */
+        .settings-container {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+        }
+
+        .settings-container .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f7fafc;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 6px;
+        }
+
+        .form-group label .required {
+            color: #fc8181;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            outline: none;
+            background: white;
+            color: #1a202c;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-group .helper-text {
+            font-size: 13px;
+            color: #a0aec0;
+            margin-top: 4px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* ============================================
+                   SOCIAL LINKS
+                ============================================ */
+        .social-section {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 2px solid #f7fafc;
+        }
+
+        .social-section .sub-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 16px;
+        }
+
+        .social-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+        }
+
+        .social-row .form-group {
+            margin-bottom: 0;
+        }
+
+        .social-row .form-group .social-icon {
+            display: inline-block;
+            margin-right: 6px;
+            font-size: 18px;
+        }
+
+        /* ============================================
+                   BUTTONS
+                ============================================ */
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid #e2e8f0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #edf2f7;
+            color: #4a5568;
+        }
+
+        .btn-secondary:hover {
+            background: #e2e8f0;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* ============================================
+                   ALERT
+                ============================================ */
+        .alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .alert-error {
+            background: #fed7d7;
+            color: #9b2c2c;
+            border: 1px solid #feb2b2;
+            display: block;
+        }
+
+        .alert-success {
+            background: #c6f6d5;
+            color: #22543d;
+            border: 1px solid #9ae6b4;
+            display: block;
+        }
+
+        .spinner-small {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ============================================
+                   RESPONSIVE
+                ============================================ */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 280px;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
+
+            .sidebar-overlay.active {
+                display: block;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 0 16px 16px 16px;
+            }
+
+            .topbar {
+                padding: 16px 0;
+            }
+
+            .topbar .menu-toggle {
+                display: block;
+            }
+
+            .topbar h1 {
+                font-size: 20px;
+            }
+
+            .topbar .user strong {
+                display: none;
+            }
+
+            .settings-container {
+                padding: 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .social-row {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+
+            .form-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .topbar .user small {
+                display: none;
+            }
+
+            .settings-container {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== SIDEBAR OVERLAY (Mobile) ===== -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo">
+            <span>&lt;/&gt;</span>
+            DevBlog
+        </div>
+
+        <nav>
+            <a href="dashboard.html">
+                <span>▦</span>
+                Dashboard
+            </a>
+            <a href="new-post.html">
+                <span>＋</span>
+                New Post
+            </a>
+            <a href="all-posts.html">
+                <span>▤</span>
+                All Posts
+            </a>
+            <a href="settings.html" class="active">
+                <span>⚙</span>
+                Settings
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="#">↗ View Website</a>
+            <button class="logout-btn" id="logoutBtn">⇥ Logout</button>
+        </div>
+    </aside>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+            <div>
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <h1>Settings</h1>
+            </div>
+            <div class="topbar-right">
+                <div class="user">
+                    <div class="avatar" id="userAvatar">D</div>
+                    <div>
+                        <strong id="userName">Admin</strong>
+                        <small>Administrator</small>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- CONTENT -->
+        <section class="content">
+
+            <div class="settings-container">
+
+                <!-- Alert -->
+                <div id="alertMessage" class="alert"></div>
+
+                <form id="settingsForm">
+
+                    <!-- ===== GENERAL SETTINGS ===== -->
+                    <h2 class="section-title">⚙️ General Settings</h2>
+
+                    <div class="form-group">
+                        <label for="siteName">Site Name <span class="required">*</span></label>
+                        <input type="text" id="siteName" placeholder="DevBlog" required />
+                        <div class="helper-text">Your blog's display name</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="siteDescription">Site Description</label>
+                        <textarea id="siteDescription" rows="3" placeholder="Web development tutorials and resources"></textarea>
+                        <div class="helper-text">A short description of your blog (used for SEO)</div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="authorName">Author Name <span class="required">*</span></label>
+                            <input type="text" id="authorName" placeholder="Your Name" required />
+                            <div class="helper-text">Your display name as the author</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="authorEmail">Author Email</label>
+                            <input type="email" id="authorEmail" placeholder="author@example.com" />
+                            <div class="helper-text">Your contact email</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="authorBio">Author Bio</label>
+                        <textarea id="authorBio" rows="4" placeholder="Tell your readers about yourself..."></textarea>
+                        <div class="helper-text">A short biography that appears on your blog</div>
+                    </div>
+
+                    <!-- ===== SOCIAL LINKS ===== -->
+                    <div class="social-section">
+                        <h3 class="sub-title">🔗 Social Links</h3>
+                        <div class="social-row">
+                            <div class="form-group">
+                                <label for="twitter">Twitter</label>
+                                <input type="text" id="twitter" placeholder="@username" />
+                                <div class="helper-text">Twitter/X username</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="github">GitHub</label>
+                                <input type="text" id="github" placeholder="username" />
+                                <div class="helper-text">GitHub username</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="linkedin">LinkedIn</label>
+                                <input type="text" id="linkedin" placeholder="linkedin.com/in/username" />
+                                <div class="helper-text">LinkedIn profile URL</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== ACTION BUTTONS ===== -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="saveSettingsBtn">
+                            💾 Save Settings
+                        </button>
+                        <button type="reset" class="btn btn-secondary">
+                            ↺ Reset Form
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script>
+        // ============================================
+        // 1. FIREBASE CONFIGURATION
+        // ============================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyDQ0B84HytHoXpMU5puN4snng3PrEucPzo",
+            authDomain: "mydevblogweb.firebaseapp.com",
+            projectId: "mydevblogweb",
+            storageBucket: "mydevblogweb.firebasestorage.app",
+            messagingSenderId: "916876510396",
+            appId: "1:916876510396:web:a1b3a2ed74367c6ab43cb9"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        db.enablePersistence()
+            .catch((err) => console.warn('Persistence error:', err));
+
+        // ============================================
+        // 2. DOM ELEMENTS
+        // ============================================
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const menuToggle = document.getElementById('menuToggle');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const userName = document.getElementById('userName');
+        const userAvatar = document.getElementById('userAvatar');
+
+        const settingsForm = document.getElementById('settingsForm');
+        const saveSettingsBtn = document.getElementById('saveSettingsBtn');
+        const alertMessage = document.getElementById('alertMessage');
+
+        // Form inputs
+        const siteNameInput = document.getElementById('siteName');
+        const siteDescriptionInput = document.getElementById('siteDescription');
+        const authorNameInput = document.getElementById('authorName');
+        const authorEmailInput = document.getElementById('authorEmail');
+        const authorBioInput = document.getElementById('authorBio');
+        const twitterInput = document.getElementById('twitter');
+        const githubInput = document.getElementById('github');
+        const linkedinInput = document.getElementById('linkedin');
+
+        // ============================================
+        // 3. STATE
+        // ============================================
+        let settingsDocId = 'site-settings'; // Fixed ID for settings
+        let currentUserId = null;
+
+        // ============================================
+        // 4. AUTHENTICATION CHECK
+        // ============================================
+        auth.onAuthStateChanged((user) => {
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            currentUserId = user.uid;
+            const email = user.email || 'Admin';
+            userName.textContent = email.split('@')[0];
+            userAvatar.textContent = email.charAt(0).toUpperCase();
+
+            loadSettings();
+        });
+
+        // ============================================
+        // 5. LOGOUT
+        // ============================================
+        async function handleLogout() {
+            if (confirm('Are you sure you want to logout?')) {
+                try {
+                    await auth.signOut();
+                    window.location.href = 'login.html';
+                } catch (error) {
+                    console.error('Logout error:', error);
+                    alert('Error logging out. Please try again.');
+                }
+            }
+        }
+
+        logoutBtn.addEventListener('click', handleLogout);
+
+        // ============================================
+        // 6. MOBILE MENU
+        // ============================================
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            sidebarOverlay.classList.toggle('active');
+        });
+
+        sidebarOverlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('active');
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                sidebar.classList.remove('open');
+                sidebarOverlay.classList.remove('active');
+            }
+        });
+
+        // ============================================
+        // 7. HELPER FUNCTIONS
+        // ============================================
+        function showAlert(message, type = 'error') {
+            alertMessage.textContent = message;
+            alertMessage.className = `alert alert-${type}`;
+
+            clearTimeout(alertMessage._timeout);
+            alertMessage._timeout = setTimeout(() => {
+                alertMessage.className = 'alert';
+            }, 5000);
+        }
+
+        function setLoading(isLoading) {
+            if (isLoading) {
+                saveSettingsBtn.disabled = true;
+                saveSettingsBtn.innerHTML = '<span class="spinner-small"></span> Saving...';
+            } else {
+                saveSettingsBtn.disabled = false;
+                saveSettingsBtn.innerHTML = '💾 Save Settings';
+            }
+        }
+
+        function getFormData() {
+            return {
+                siteName: siteNameInput.value.trim(),
+                siteDescription: siteDescriptionInput.value.trim(),
+                authorName: authorNameInput.value.trim(),
+                authorEmail: authorEmailInput.value.trim(),
+                authorBio: authorBioInput.value.trim(),
+                socialLinks: {
+                    twitter: twitterInput.value.trim(),
+                    github: githubInput.value.trim(),
+                    linkedin: linkedinInput.value.trim()
+                },
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            };
+        }
+
+        function populateForm(data) {
+            if (!data) return;
+
+            siteNameInput.value = data.siteName || '';
+            siteDescriptionInput.value = data.siteDescription || '';
+            authorNameInput.value = data.authorName || '';
+            authorEmailInput.value = data.authorEmail || '';
+            authorBioInput.value = data.authorBio || '';
+
+            if (data.socialLinks) {
+                twitterInput.value = data.socialLinks.twitter || '';
+                githubInput.value = data.socialLinks.github || '';
+                linkedinInput.value = data.socialLinks.linkedin || '';
+            }
+        }
+
+        // ============================================
+        // 8. LOAD SETTINGS
+        // ============================================
+        async function loadSettings() {
+            try {
+                const doc = await db.collection('settings').doc(settingsDocId).get();
+
+                if (doc.exists) {
+                    populateForm(doc.data());
+                    console.log('✅ Settings loaded successfully');
+                } else {
+                    console.log('ℹ️ No settings found, using defaults');
+                    // Set default values if needed
+                    siteNameInput.value = 'DevBlog';
+                    authorNameInput.value = 'Admin';
+                }
+
+            } catch (error) {
+                console.error('Error loading settings:', error);
+                // Don't show error alert for first load, use defaults
+            }
+        }
+
+        // ============================================
+        // 9. SAVE SETTINGS
+        // ============================================
+        async function saveSettings(e) {
+            e.preventDefault();
+
+            const data = getFormData();
+
+            // Validation
+            if (!data.siteName) {
+                showAlert('Please enter a site name.', 'error');
+                return;
+            }
+
+            if (!data.authorName) {
+                showAlert('Please enter an author name.', 'error');
+                return;
+            }
+
+            try {
+                setLoading(true);
+
+                // Check if settings document exists
+                const docRef = db.collection('settings').doc(settingsDocId);
+                const doc = await docRef.get();
+
+                if (doc.exists) {
+                    // Update existing
+                    await docRef.update(data);
+                } else {
+                    // Create new
+                    await docRef.set({
+                        ...data,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                }
+
+                showAlert('Settings saved successfully!', 'success');
+
+            } catch (error) {
+                console.error('Error saving settings:', error);
+                showAlert('Error saving settings. Please try again.', 'error');
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        // ============================================
+        // 10. EVENT LISTENERS
+        // ============================================
+        settingsForm.addEventListener('submit', saveSettings);
+
+        // ============================================
+        // 11. RESET FORM
+        // ============================================
+        document.querySelector('button[type="reset"]').addEventListener('click', (e) => {
+            e.preventDefault();
+            if (confirm('Reset all fields to their default values?')) {
+                // Reload settings from Firestore
+                loadSettings();
+                showAlert('Form reset to saved values.', 'success');
+            }
+        });
+
+        console.log('✅ Settings page ready.');
+    </script>
+
+</body>
+</html>

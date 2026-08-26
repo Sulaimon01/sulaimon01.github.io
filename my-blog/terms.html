@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SK2537KX5K">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SK2537KX5K');
+</script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms of Service - DevBlog</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Read DevBlog's Terms of Service to understand the rules and guidelines for using our website, content, and services." />
+    <meta name="keywords" content="terms of service, terms and conditions, legal, DevBlog" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://yourdomain.com/terms.html" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <style>
+        /* ============================================
+           CSS VARIABLES (Light & Dark Themes)
+           ============================================ */
+        :root {
+            /* Light Theme (Default) */
+            --bg-primary: #F8FAFC;
+            --bg-secondary: #FFFFFF;
+            --bg-card: #FFFFFF;
+            --text-primary: #111827;
+            --text-secondary: #64748B;
+            --text-white: #FFFFFF;
+            --border-color: #E5E7EB;
+            --primary: #6366F1;
+            --primary-hover: #4F46E5;
+            --success: #10B981;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --transition: 0.3s ease;
+            --max-width: 1200px;
+            --content-width: 800px;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0F172A;
+            --bg-secondary: #1E293B;
+            --bg-card: #1E293B;
+            --text-primary: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --text-white: #F1F5F9;
+            --border-color: #334155;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            transition: background var(--transition), color var(--transition);
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+        }
+
+        a:hover {
+            color: var(--primary-hover);
+        }
+
+        /* ============================================
+           CONTAINERS
+           ============================================ */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .content-container {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        .navbar {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background var(--transition), border-color var(--transition);
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        [data-theme="dark"] .navbar {
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color var(--transition);
+        }
+
+        .navbar .logo span {
+            color: var(--primary);
+        }
+
+        .navbar .logo .logo-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+            background: var(--bg-primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Search */
+        .search-wrapper {
+            position: relative;
+        }
+
+        .search-wrapper input {
+            padding: 8px 14px 8px 36px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all var(--transition);
+            width: 180px;
+            outline: none;
+        }
+
+        .search-wrapper input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .search-wrapper input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .search-wrapper .search-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all var(--transition);
+            color: var(--text-secondary);
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        /* ============================================
+           TERMS PAGE STYLES
+           ============================================ */
+        .terms-page {
+            padding: 60px 0 80px;
+        }
+
+        .terms-page .page-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .terms-page .page-header .badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .terms-page .page-header h1 {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+        }
+
+        .terms-page .page-header h1 span {
+            color: var(--primary);
+        }
+
+        .terms-page .page-header p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .terms-page .last-updated {
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            padding: 12px;
+            background: var(--bg-primary);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .terms-page .terms-section {
+            margin-bottom: 32px;
+            padding: 28px 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            transition: background var(--transition), border-color var(--transition);
+        }
+
+        .terms-page .terms-section:hover {
+            border-color: var(--primary);
+        }
+
+        .terms-page .terms-section h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .terms-page .terms-section h2 .icon {
+            font-size: 28px;
+        }
+
+        .terms-page .terms-section p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        .terms-page .terms-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .terms-page .terms-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0;
+        }
+
+        .terms-page .terms-section ul li {
+            color: var(--text-secondary);
+            font-size: 15px;
+            padding: 6px 0 6px 28px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .terms-page .terms-section ul li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .terms-page .terms-section .highlight-box {
+            background: var(--bg-primary);
+            border-left: 4px solid var(--primary);
+            padding: 16px 20px;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            margin: 12px 0;
+        }
+
+        .terms-page .terms-section .highlight-box p {
+            margin-bottom: 0;
+            font-size: 15px;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 24px 32px;
+            margin-bottom: 40px;
+        }
+
+        .toc h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px 24px;
+        }
+
+        .toc ul li a {
+            color: var(--text-secondary);
+            font-size: 14px;
+            padding: 4px 0;
+            display: block;
+            transition: color var(--transition);
+        }
+
+        .toc ul li a:hover {
+            color: var(--primary);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 48px 0 24px;
+            margin-top: 0;
+            transition: background var(--transition), border-color var(--transition);
+        }
+
+        .footer .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+            gap: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .footer .footer-brand .footer-logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            transition: color var(--transition);
+        }
+
+        .footer .footer-brand .footer-logo span {
+            color: var(--primary);
+        }
+
+        .footer .footer-brand .footer-logo .logo-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .footer .footer-brand p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            max-width: 320px;
+            line-height: 1.6;
+        }
+
+        .footer .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .footer .footer-column h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color var(--transition);
+        }
+
+        .footer .footer-column a {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 14px;
+            padding: 4px 0;
+            transition: color var(--transition);
+        }
+
+        .footer .footer-column a:hover {
+            color: var(--primary);
+        }
+
+        .footer .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 24px;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .footer .footer-bottom p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 992px) {
+            .footer .footer-content {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .footer .footer-brand p {
+                max-width: 100%;
+            }
+
+            .footer .footer-links {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                padding: 12px 0;
+                gap: 4px;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                width: 100%;
+                padding: 10px 14px;
+            }
+
+            .search-wrapper input {
+                width: 140px;
+            }
+
+            .terms-page {
+                padding: 40px 0 60px;
+            }
+
+            .terms-page .page-header h1 {
+                font-size: 30px;
+            }
+
+            .terms-page .terms-section {
+                padding: 20px;
+            }
+
+            .terms-page .terms-section h2 {
+                font-size: 20px;
+            }
+
+            .toc ul {
+                grid-template-columns: 1fr;
+            }
+
+            .footer {
+                padding: 32px 0 16px;
+            }
+
+            .footer .footer-links {
+                grid-template-columns: 1fr 1fr;
+                gap: 24px;
+            }
+
+            .footer .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar .container {
+                flex-wrap: wrap;
+            }
+
+            .nav-actions {
+                margin-left: auto;
+            }
+
+            .search-wrapper input {
+                width: 120px;
+                font-size: 13px;
+            }
+
+            .terms-page .page-header h1 {
+                font-size: 26px;
+            }
+
+            .terms-page .terms-section {
+                padding: 16px;
+            }
+
+            .footer .footer-links {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .footer .footer-content {
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+               NAVIGATION
+            ============================================ -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">&lt;/&gt;</span>
+                Dev<span>Blog</span>
+            </a>
+
+            <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="index.html?category=CSS">CSS</a>
+                <a href="index.html?category=HTML">HTML</a>
+                <a href="index.html?category=JavaScript">JavaScript</a>
+                <a href="index.html?category=Tutorials">Tutorials</a>
+            </div>
+
+            <div class="nav-actions">
+                <div class="search-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInput" placeholder="Search posts..." />
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌓</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================
+               TERMS PAGE CONTENT
+            ============================================ -->
+    <main>
+        <div class="container">
+            <div class="terms-page">
+
+                <!-- Header -->
+                <div class="page-header">
+                    <span class="badge">Terms of Service</span>
+                    <h1>Terms &amp; <span>Conditions</span></h1>
+                    <p>By using DevBlog, you agree to these terms. Please read them carefully before accessing or using our website.</p>
+                </div>
+
+                <div class="last-updated">
+                    📅 Last Updated: August 24, 2026
+                </div>
+
+                <!-- Table of Contents -->
+                <div class="toc">
+                    <h3>📑 Table of Contents</h3>
+                    <ul>
+                        <li><a href="#acceptance">1. Acceptance of Terms</a></li>
+                        <li><a href="#content">2. Content & Intellectual Property</a></li>
+                        <li><a href="#user-conduct">3. User Conduct</a></li>
+                        <li><a href="#user-accounts">4. User Accounts</a></li>
+                        <li><a href="#third-party">5. Third-Party Links</a></li>
+                        <li><a href="#disclaimer">6. Disclaimer of Warranties</a></li>
+                        <li><a href="#limitation">7. Limitation of Liability</a></li>
+                        <li><a href="#indemnification">8. Indemnification</a></li>
+                        <li><a href="#termination">9. Termination</a></li>
+                        <li><a href="#governing-law">10. Governing Law</a></li>
+                        <li><a href="#changes">11. Changes to Terms</a></li>
+                        <li><a href="#contact">12. Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Section 1 -->
+                <div class="terms-section" id="acceptance">
+                    <h2><span class="icon">✅</span> 1. Acceptance of Terms</h2>
+                    <p>By accessing or using DevBlog ("the Website"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use our website.</p>
+                    <p>These Terms apply to all visitors, users, and others who access or use our services. We reserve the right to update these Terms at any time, and your continued use constitutes acceptance of any changes.</p>
+                    <div class="highlight-box">
+                        <p>📌 By using DevBlog, you confirm that you are at least 13 years old and have the legal capacity to enter into these Terms.</p>
+                    </div>
+                </div>
+
+                <!-- Section 2 -->
+                <div class="terms-section" id="content">
+                    <h2><span class="icon">📄</span> 2. Content &amp; Intellectual Property</h2>
+                    <p>All content on DevBlog, including but not limited to text, graphics, logos, images, code snippets, and tutorials, is the intellectual property of DevBlog and protected by copyright and other intellectual property laws.</p>
+                    <ul>
+                        <li><strong>Ownership:</strong> All content is owned by DevBlog or our content creators.</li>
+                        <li><strong>Educational Use:</strong> You may use our content for personal, educational purposes.</li>
+                        <li><strong>Prohibited Use:</strong> You may not reproduce, distribute, or commercially exploit our content without written permission.</li>
+                        <li><strong>Code Snippets:</strong> Code examples are provided "as-is" for learning purposes and may be used in your projects.</li>
+                    </ul>
+                </div>
+
+                <!-- Section 3 -->
+                <div class="terms-section" id="user-conduct">
+                    <h2><span class="icon">🤝</span> 3. User Conduct</h2>
+                    <p>When using DevBlog, you agree to:</p>
+                    <ul>
+                        <li>Use the website for lawful purposes only</li>
+                        <li>Not violate any applicable laws or regulations</li>
+                        <li>Not infringe on the rights of others</li>
+                        <li>Not post or transmit any harmful, offensive, or inappropriate content</li>
+                        <li>Not attempt to gain unauthorized access to our systems</li>
+                        <li>Not interfere with the operation of the website</li>
+                        <li>Not use automated systems to access or scrape content</li>
+                    </ul>
+                    <div class="highlight-box">
+                        <p>⚠️ Violation of these conduct rules may result in termination of access to our website.</p>
+                    </div>
+                </div>
+
+                <!-- Section 4 -->
+                <div class="terms-section" id="user-accounts">
+                    <h2><span class="icon">👤</span> 4. User Accounts</h2>
+                    <p>Some features of DevBlog may require creating an account. When you create an account, you agree to:</p>
+                    <ul>
+                        <li>Provide accurate and complete information</li>
+                        <li>Keep your login credentials secure</li>
+                        <li>Notify us immediately of any unauthorized use</li>
+                        <li>Take responsibility for all activity under your account</li>
+                    </ul>
+                    <p>We reserve the right to suspend or terminate accounts that violate these Terms.</p>
+                </div>
+
+                <!-- Section 5 -->
+                <div class="terms-section" id="third-party">
+                    <h2><span class="icon">🔗</span> 5. Third-Party Links</h2>
+                    <p>DevBlog may contain links to third-party websites or services that are not owned or controlled by us. We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party websites.</p>
+                    <p>By using our website, you acknowledge and agree that we are not responsible for any damages or losses caused by your use of third-party links.</p>
+                    <div class="highlight-box">
+                        <p>🔗 We encourage you to review the terms and privacy policies of any third-party websites you visit.</p>
+                    </div>
+                </div>
+
+                <!-- Section 6 -->
+                <div class="terms-section" id="disclaimer">
+                    <h2><span class="icon">⚠️</span> 6. Disclaimer of Warranties</h2>
+                    <p>DevBlog is provided "as-is" and "as-available" without any warranties of any kind, either express or implied. We make no representations or warranties regarding:</p>
+                    <ul>
+                        <li>The accuracy, reliability, or completeness of content</li>
+                        <li>The availability or uninterrupted operation of the website</li>
+                        <li>The suitability of content for any specific purpose</li>
+                        <li>Freedom from errors, viruses, or harmful components</li>
+                    </ul>
+                    <p>Use of our website is at your own risk. We disclaim all warranties to the fullest extent permitted by law.</p>
+                </div>
+
+                <!-- Section 7 -->
+                <div class="terms-section" id="limitation">
+                    <h2><span class="icon">🚫</span> 7. Limitation of Liability</h2>
+                    <p>To the fullest extent permitted by law, DevBlog and its owners, creators, and contributors shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising from your use of our website.</p>
+                    <ul>
+                        <li>Loss of data or profits</li>
+                        <li>Any errors or omissions in content</li>
+                        <li>Any unauthorized access to or use of our servers</li>
+                        <li>Any interruption or cessation of service</li>
+                    </ul>
+                    <p>If you are dissatisfied with any part of our website, your sole and exclusive remedy is to discontinue use of the website.</p>
+                </div>
+
+                <!-- Section 8 -->
+                <div class="terms-section" id="indemnification">
+                    <h2><span class="icon">🛡️</span> 8. Indemnification</h2>
+                    <p>You agree to indemnify, defend, and hold harmless DevBlog and its owners, creators, contributors, and affiliates from any claims, damages, losses, liabilities, and expenses arising from:</p>
+                    <ul>
+                        <li>Your use of the website</li>
+                        <li>Your violation of these Terms</li>
+                        <li>Your violation of any third-party rights</li>
+                        <li>Any content you submit or share</li>
+                    </ul>
+                </div>
+
+                <!-- Section 9 -->
+                <div class="terms-section" id="termination">
+                    <h2><span class="icon">⛔</span> 9. Termination</h2>
+                    <p>We reserve the right to terminate or suspend your access to DevBlog immediately, without prior notice, for any reason, including but not limited to:</p>
+                    <ul>
+                        <li>Violation of these Terms</li>
+                        <li>Engaging in prohibited conduct</li>
+                        <li>Fraudulent or illegal activity</li>
+                        <li>Any other reason at our sole discretion</li>
+                    </ul>
+                    <p>Upon termination, all provisions of these Terms that by their nature should survive termination shall survive.</p>
+                </div>
+
+                <!-- Section 10 -->
+                <div class="terms-section" id="governing-law">
+                    <h2><span class="icon">⚖️</span> 10. Governing Law</h2>
+                    <p>These Terms shall be governed by and construed in accordance with the laws of the United States, without regard to conflict of law provisions.</p>
+                    <p>Any legal action or proceeding arising from these Terms shall be brought exclusively in the courts located in the United States, and you consent to the jurisdiction of such courts.</p>
+                </div>
+
+                <!-- Section 11 -->
+                <div class="terms-section" id="changes">
+                    <h2><span class="icon">📝</span> 11. Changes to Terms</h2>
+                    <p>We reserve the right to update these Terms of Service at any time. We will notify you of any material changes by updating the "Last Updated" date at the top of this page.</p>
+                    <p>Your continued use of DevBlog after any changes constitutes your acceptance of the updated Terms. We encourage you to review these Terms periodically.</p>
+                </div>
+
+                <!-- Section 12 -->
+                <div class="terms-section" id="contact" style="border-color: var(--primary);">
+                    <h2><span class="icon">📧</span> 12. Contact Us</h2>
+                    <p>If you have any questions, concerns, or requests regarding these Terms of Service, please contact us:</p>
+                    <p style="margin-top: 12px;">
+                        <strong>Email:</strong> <a href="mailto:legal@devblog.com">legal@devblog.com</a><br />
+                        <strong>Contact Form:</strong> <a href="contact.html">Contact Us</a>
+                    </p>
+                    <div class="highlight-box">
+                        <p>📬 We aim to respond to all inquiries within 24-48 hours.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- ============================================
+               FOOTER
+            ============================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-icon">&lt;/&gt;</span>
+                        Dev<span>Blog</span>
+                    </div>
+                    <p>Your trusted source for web development tutorials, coding tips, and practical guides for developers of all skill levels.</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Categories</h4>
+                        <a href="index.html?category=CSS">CSS</a>
+                        <a href="index.html?category=HTML">HTML</a>
+                        <a href="index.html?category=JavaScript">JavaScript</a>
+                        <a href="index.html?category=Tutorials">Tutorials</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="about.html">About Us</a>
+                        <a href="contact.html">Contact Us</a>
+                        <a href="privacy.html">Privacy Policy</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <a href="terms.html">Terms of Service</a>
+                        <a href="disclaimer.html">Disclaimer</a>
+                        <a href="sitemap.html">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 DevBlog. All rights reserved.</p>
+                <p>Built with ❤️ for developers</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================
+        // THEME MANAGEMENT
+        // ============================================
+        function getTheme() {
+            return localStorage.getItem('blog-theme') || 'light';
+        }
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('blog-theme', theme);
+            const toggle = document.getElementById('themeToggle');
+            if (toggle) toggle.textContent = theme === 'dark' ? '☀️' : '🌓';
+        }
+
+        setTheme(getTheme());
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('themeToggle');
+            if (toggle) {
+                toggle.addEventListener('click', () => {
+                    const current = getTheme();
+                    setTheme(current === 'dark' ? 'light' : 'dark');
+                });
+            }
+
+            // Mobile menu
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', () => {
+                    navLinks.classList.toggle('open');
+                });
+
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('open');
+                    });
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

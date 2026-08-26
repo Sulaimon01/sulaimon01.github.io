@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SK2537KX5K">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SK2537KX5K');
+</script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - DevBlog</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Learn about DevBlog - your trusted source for web development tutorials, coding tips, and practical guides for developers of all skill levels." />
+    <meta name="keywords" content="about devblog, web development blog, coding tutorials, learn web development" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://yourdomain.com/about.html" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+````<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+```<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+``<link rel="manifest" href="/site.webmanifest">
+
+    <style>
+        /* ============================================
+           CSS VARIABLES (Light & Dark Themes)
+           ============================================ */
+        :root {
+            /* Light Theme (Default) */
+            --bg-primary: #F8FAFC;
+            --bg-secondary: #FFFFFF;
+            --bg-card: #FFFFFF;
+            --text-primary: #111827;
+            --text-secondary: #64748B;
+            --text-white: #FFFFFF;
+            --border-color: #E5E7EB;
+            --primary: #6366F1;
+            --primary-hover: #4F46E5;
+            --success: #10B981;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --transition: 0.3s ease;
+            --max-width: 1200px;
+            --content-width: 800px;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0F172A;
+            --bg-secondary: #1E293B;
+            --bg-card: #1E293B;
+            --text-primary: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --text-white: #F1F5F9;
+            --border-color: #334155;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            transition: background var(--transition), color var(--transition);
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+        }
+
+        a:hover {
+            color: var(--primary-hover);
+        }
+
+        /* ============================================
+           CONTAINERS
+           ============================================ */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .content-container {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        .navbar {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background var(--transition), border-color var(--transition);
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        [data-theme="dark"] .navbar {
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color var(--transition);
+        }
+
+        .navbar .logo span {
+            color: var(--primary);
+        }
+
+        .navbar .logo .logo-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+            background: var(--bg-primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Search */
+        .search-wrapper {
+            position: relative;
+        }
+
+        .search-wrapper input {
+            padding: 8px 14px 8px 36px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all var(--transition);
+            width: 180px;
+            outline: none;
+        }
+
+        .search-wrapper input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .search-wrapper input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .search-wrapper .search-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all var(--transition);
+            color: var(--text-secondary);
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        /* ============================================
+           ABOUT PAGE STYLES
+           ============================================ */
+        .about-page {
+            padding: 60px 0 80px;
+        }
+
+        .about-page .about-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .about-page .about-header .badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .about-page .about-header h1 {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+        }
+
+        .about-page .about-header h1 span {
+            color: var(--primary);
+        }
+
+        .about-page .about-header p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .about-page .about-section {
+            margin-bottom: 48px;
+            padding: 32px 40px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            transition: background var(--transition), border-color var(--transition);
+        }
+
+        .about-page .about-section h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .about-page .about-section h2 .icon {
+            margin-right: 10px;
+        }
+
+        .about-page .about-section p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .about-page .about-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-page .about-section ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 24px;
+            margin-top: 12px;
+        }
+
+        .about-page .about-section ul li {
+            color: var(--text-secondary);
+            font-size: 15px;
+            padding: 6px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .about-page .about-section ul li::before {
+            content: "✓";
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 16px;
+        }
+
+        .stats-grid .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: var(--bg-primary);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            transition: all var(--transition);
+        }
+
+        .stats-grid .stat-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary);
+        }
+
+        .stats-grid .stat-item .number {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary);
+            display: block;
+        }
+
+        .stats-grid .stat-item .label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* Mission & Vision */
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .mission-vision .mv-item {
+            padding: 24px;
+            background: var(--bg-primary);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            transition: border-color var(--transition);
+        }
+
+        .mission-vision .mv-item:hover {
+            border-color: var(--primary);
+        }
+
+        .mission-vision .mv-item h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .mission-vision .mv-item p {
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 48px 0 24px;
+            margin-top: 0;
+            transition: background var(--transition), border-color var(--transition);
+        }
+
+        .footer .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+            gap: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .footer .footer-brand .footer-logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            transition: color var(--transition);
+        }
+
+        .footer .footer-brand .footer-logo span {
+            color: var(--primary);
+        }
+
+        .footer .footer-brand .footer-logo .logo-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .footer .footer-brand p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            max-width: 320px;
+            line-height: 1.6;
+        }
+
+        .footer .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .footer .footer-column h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color var(--transition);
+        }
+
+        .footer .footer-column a {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 14px;
+            padding: 4px 0;
+            transition: color var(--transition);
+        }
+
+        .footer .footer-column a:hover {
+            color: var(--primary);
+        }
+
+        .footer .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 24px;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .footer .footer-bottom p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 992px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer .footer-content {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .footer .footer-brand p {
+                max-width: 100%;
+            }
+
+            .footer .footer-links {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                padding: 12px 0;
+                gap: 4px;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                width: 100%;
+                padding: 10px 14px;
+            }
+
+            .search-wrapper input {
+                width: 140px;
+            }
+
+            .about-page {
+                padding: 40px 0 60px;
+            }
+
+            .about-page .about-header h1 {
+                font-size: 30px;
+            }
+
+            .about-page .about-section {
+                padding: 24px;
+            }
+
+            .about-page .about-section ul {
+                grid-template-columns: 1fr;
+            }
+
+            .mission-vision {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .stats-grid .stat-item .number {
+                font-size: 24px;
+            }
+
+            .footer {
+                padding: 32px 0 16px;
+            }
+
+            .footer .footer-links {
+                grid-template-columns: 1fr 1fr;
+                gap: 24px;
+            }
+
+            .footer .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar .container {
+                flex-wrap: wrap;
+            }
+
+            .nav-actions {
+                margin-left: auto;
+            }
+
+            .search-wrapper input {
+                width: 120px;
+                font-size: 13px;
+            }
+
+            .about-page .about-header h1 {
+                font-size: 26px;
+            }
+
+            .about-page .about-section {
+                padding: 16px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer .footer-links {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .footer .footer-content {
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+               NAVIGATION
+            ============================================ -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">&lt;/&gt;</span>
+                Dev<span>Blog</span>
+            </a>
+
+            <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="index.html?category=CSS">CSS</a>
+                <a href="index.html?category=HTML">HTML</a>
+                <a href="index.html?category=JavaScript">JavaScript</a>
+                <a href="index.html?category=Tutorials">Tutorials</a>
+            </div>
+
+            <div class="nav-actions">
+                <div class="search-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInput" placeholder="Search posts..." />
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌓</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================
+               ABOUT PAGE CONTENT
+            ============================================ -->
+    <main>
+        <div class="container">
+            <div class="about-page">
+
+                <!-- Header -->
+                <div class="about-header">
+                    <span class="badge">About Us</span>
+                    <h1>Learn. Build. <span>Grow.</span></h1>
+                    <p>DevBlog is your trusted source for web development tutorials, coding tips, and practical guides for developers of all skill levels.</p>
+                </div>
+
+                <!-- Our Story -->
+                <div class="about-section">
+                    <h2><span class="icon">📖</span> Our Story</h2>
+                    <p>
+                        DevBlog was founded with a simple mission: to make web development accessible and enjoyable for everyone. 
+                        We believe that anyone can learn to code with the right resources and guidance.
+                    </p>
+                    <p>
+                        What started as a personal blog sharing coding tips has grown into a comprehensive resource for developers 
+                        around the world. Our team is passionate about creating high-quality, practical tutorials that help you 
+                        build real-world skills.
+                    </p>
+                    <p>
+                        Whether you're a complete beginner or an experienced developer looking to learn new technologies, 
+                        DevBlog has something for you.
+                    </p>
+                </div>
+
+                <!-- Mission & Vision -->
+                <div class="about-section">
+                    <h2><span class="icon">🎯</span> Our Mission &amp; Vision</h2>
+                    <div class="mission-vision">
+                        <div class="mv-item">
+                            <h3>🚀 Mission</h3>
+                            <p>To empower developers worldwide with practical, high-quality tutorials and resources that make web development accessible, enjoyable, and career-transforming.</p>
+                        </div>
+                        <div class="mv-item">
+                            <h3>🌟 Vision</h3>
+                            <p>To become the most trusted and comprehensive web development learning platform, fostering a global community of skilled developers who build the future of the web.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- What We Offer -->
+                <div class="about-section">
+                    <h2><span class="icon">💡</span> What We Offer</h2>
+                    <p>DevBlog provides a wide range of resources to help you on your web development journey:</p>
+                    <ul>
+                        <li>Step-by-step tutorials</li>
+                        <li>Practical coding examples</li>
+                        <li>HTML, CSS, and JavaScript guides</li>
+                        <li>React and modern frameworks</li>
+                        <li>Responsive design techniques</li>
+                        <li>Web performance optimization</li>
+                        <li>Industry best practices</li>
+                        <li>Career development tips</li>
+                    </ul>
+                </div>
+
+                <!-- Our Values -->
+                <div class="about-section">
+                    <h2><span class="icon">❤️</span> Our Values</h2>
+                    <p>Everything we do at DevBlog is guided by these core values:</p>
+                    <ul>
+                        <li><strong>Quality</strong> — We never compromise on the quality of our content.</li>
+                        <li><strong>Accessibility</strong> — We believe learning should be free and accessible to everyone.</li>
+                        <li><strong>Practicality</strong> — We focus on real-world skills you can use immediately.</li>
+                        <li><strong>Community</strong> — We foster a supportive and inclusive learning environment.</li>
+                        <li><strong>Innovation</strong> — We stay current with the latest web technologies and trends.</li>
+                    </ul>
+                </div>
+
+                <!-- Stats -->
+                <div class="about-section">
+                    <h2><span class="icon">📊</span> DevBlog by the Numbers</h2>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="number">50+</span>
+                            <span class="label">Tutorials Published</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="number">10K+</span>
+                            <span class="label">Monthly Readers</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="number">4+</span>
+                            <span class="label">Categories</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="number">100%</span>
+                            <span class="label">Free Content</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Join Us -->
+                <div class="about-section" style="text-align:center; border: 2px solid var(--primary);">
+                    <h2><span class="icon">🤝</span> Join Our Community</h2>
+                    <p style="max-width:600px; margin:0 auto 16px;">
+                        Start your web development journey today. Subscribe to our newsletter and never miss a tutorial.
+                    </p>
+                    <p>
+                        <a href="contact.html" style="display:inline-block; background: var(--primary); color: white; padding:12px 32px; border-radius:8px; font-weight:600; transition: all var(--transition);">
+                            Get in Touch →
+                        </a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- ============================================
+               FOOTER
+            ============================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-icon">&lt;/&gt;</span>
+                        Dev<span>Blog</span>
+                    </div>
+                    <p>Your trusted source for web development tutorials, coding tips, and practical guides for developers of all skill levels.</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Categories</h4>
+                        <a href="index.html?category=CSS">CSS</a>
+                        <a href="index.html?category=HTML">HTML</a>
+                        <a href="index.html?category=JavaScript">JavaScript</a>
+                        <a href="index.html?category=Tutorials">Tutorials</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="about.html">About Us</a>
+                        <a href="contact.html">Contact Us</a>
+                        <a href="privacy.html">Privacy Policy</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <a href="terms.html">Terms of Service</a>
+                        <a href="disclaimer.html">Disclaimer</a>
+                        <a href="sitemap.html">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 DevBlog. All rights reserved.</p>
+                <p>Built with ❤️ for developers</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================
+        // THEME MANAGEMENT
+        // ============================================
+        function getTheme() {
+            return localStorage.getItem('blog-theme') || 'light';
+        }
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('blog-theme', theme);
+            const toggle = document.getElementById('themeToggle');
+            if (toggle) toggle.textContent = theme === 'dark' ? '☀️' : '🌓';
+        }
+
+        setTheme(getTheme());
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('themeToggle');
+            if (toggle) {
+                toggle.addEventListener('click', () => {
+                    const current = getTheme();
+                    setTheme(current === 'dark' ? 'light' : 'dark');
+                });
+            }
+
+            // Mobile menu
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', () => {
+                    navLinks.classList.toggle('open');
+                });
+
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('open');
+                    });
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

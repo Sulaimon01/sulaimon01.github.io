@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SK2537KX5K">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SK2537KX5K');
+</script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Disclaimer - DevBlog</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Read DevBlog's Disclaimer to understand the limitations of our content and your use of the information provided on our website." />
+    <meta name="keywords" content="disclaimer, legal, liability, DevBlog, web development" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://yourdomain.com/disclaimer.html" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ============================================
+           CSS VARIABLES (Light & Dark Themes)
+           ============================================ */
+        :root {
+            /* Light Theme (Default) */
+            --bg-primary: #F8FAFC;
+            --bg-secondary: #FFFFFF;
+            --bg-card: #FFFFFF;
+            --text-primary: #111827;
+            --text-secondary: #64748B;
+            --text-white: #FFFFFF;
+            --border-color: #E5E7EB;
+            --primary: #6366F1;
+            --primary-hover: #4F46E5;
+            --success: #10B981;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --transition: 0.3s ease;
+            --max-width: 1200px;
+            --content-width: 800px;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0F172A;
+            --bg-secondary: #1E293B;
+            --bg-card: #1E293B;
+            --text-primary: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --text-white: #F1F5F9;
+            --border-color: #334155;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            transition: background var(--transition), color var(--transition);
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+        }
+
+        a:hover {
+            color: var(--primary-hover);
+        }
+
+        /* ============================================
+           CONTAINERS
+           ============================================ */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .content-container {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        .navbar {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background var(--transition), border-color var(--transition);
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        [data-theme="dark"] .navbar {
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color var(--transition);
+        }
+
+        .navbar .logo span {
+            color: var(--primary);
+        }
+
+        .navbar .logo .logo-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+            background: var(--bg-primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Search */
+        .search-wrapper {
+            position: relative;
+        }
+
+        .search-wrapper input {
+            padding: 8px 14px 8px 36px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all var(--transition);
+            width: 180px;
+            outline: none;
+        }
+
+        .search-wrapper input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .search-wrapper input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .search-wrapper .search-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all var(--transition);
+            color: var(--text-secondary);
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        /* ============================================
+           DISCLAIMER PAGE STYLES
+           ============================================ */
+        .disclaimer-page {
+            padding: 60px 0 80px;
+        }
+
+        .disclaimer-page .page-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .disclaimer-page .page-header .badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .disclaimer-page .page-header h1 {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+        }
+
+        .disclaimer-page .page-header h1 span {
+            color: var(--primary);
+        }
+
+        .disclaimer-page .page-header p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .disclaimer-page .last-updated {
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            padding: 12px;
+            background: var(--bg-primary);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .disclaimer-page .disclaimer-section {
+            margin-bottom: 32px;
+            padding: 28px 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            transition: background var(--transition), border-color var(--transition);
+        }
+
+        .disclaimer-page .disclaimer-section:hover {
+            border-color: var(--primary);
+        }
+
+        .disclaimer-page .disclaimer-section h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .disclaimer-page .disclaimer-section h2 .icon {
+            font-size: 28px;
+        }
+
+        .disclaimer-page .disclaimer-section p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        .disclaimer-page .disclaimer-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .disclaimer-page .disclaimer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0;
+        }
+
+        .disclaimer-page .disclaimer-section ul li {
+            color: var(--text-secondary);
+            font-size: 15px;
+            padding: 6px 0 6px 28px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .disclaimer-page .disclaimer-section ul li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .disclaimer-page .disclaimer-section .highlight-box {
+            background: var(--bg-primary);
+            border-left: 4px solid var(--primary);
+            padding: 16px 20px;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            margin: 12px 0;
+        }
+
+        .disclaimer-page .disclaimer-section .highlight-box p {
+            margin-bottom: 0;
+            font-size: 15px;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 24px 32px;
+            margin-bottom: 40px;
+        }
+
+        .toc h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px 24px;
+        }
+
+        .toc ul li a {
+            color: var(--text-secondary);
+            font-size: 14px;
+            padding: 4px 0;
+            display: block;
+            transition: color var(--transition);
+        }
+
+        .toc ul li a:hover {
+            color: var(--primary);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 48px 0 24px;
+            margin-top: 0;
+            transition: background var(--transition), border-color var(--transition);
+        }
+
+        .footer .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+            gap: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .footer .footer-brand .footer-logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            transition: color var(--transition);
+        }
+
+        .footer .footer-brand .footer-logo span {
+            color: var(--primary);
+        }
+
+        .footer .footer-brand .footer-logo .logo-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .footer .footer-brand p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            max-width: 320px;
+            line-height: 1.6;
+        }
+
+        .footer .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .footer .footer-column h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color var(--transition);
+        }
+
+        .footer .footer-column a {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 14px;
+            padding: 4px 0;
+            transition: color var(--transition);
+        }
+
+        .footer .footer-column a:hover {
+            color: var(--primary);
+        }
+
+        .footer .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 24px;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .footer .footer-bottom p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 992px) {
+            .footer .footer-content {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .footer .footer-brand p {
+                max-width: 100%;
+            }
+
+            .footer .footer-links {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                padding: 12px 0;
+                gap: 4px;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                width: 100%;
+                padding: 10px 14px;
+            }
+
+            .search-wrapper input {
+                width: 140px;
+            }
+
+            .disclaimer-page {
+                padding: 40px 0 60px;
+            }
+
+            .disclaimer-page .page-header h1 {
+                font-size: 30px;
+            }
+
+            .disclaimer-page .disclaimer-section {
+                padding: 20px;
+            }
+
+            .disclaimer-page .disclaimer-section h2 {
+                font-size: 20px;
+            }
+
+            .toc ul {
+                grid-template-columns: 1fr;
+            }
+
+            .footer {
+                padding: 32px 0 16px;
+            }
+
+            .footer .footer-links {
+                grid-template-columns: 1fr 1fr;
+                gap: 24px;
+            }
+
+            .footer .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar .container {
+                flex-wrap: wrap;
+            }
+
+            .nav-actions {
+                margin-left: auto;
+            }
+
+            .search-wrapper input {
+                width: 120px;
+                font-size: 13px;
+            }
+
+            .disclaimer-page .page-header h1 {
+                font-size: 26px;
+            }
+
+            .disclaimer-page .disclaimer-section {
+                padding: 16px;
+            }
+
+            .footer .footer-links {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .footer .footer-content {
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+               NAVIGATION
+            ============================================ -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">&lt;/&gt;</span>
+                Dev<span>Blog</span>
+            </a>
+
+            <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="index.html?category=CSS">CSS</a>
+                <a href="index.html?category=HTML">HTML</a>
+                <a href="index.html?category=JavaScript">JavaScript</a>
+                <a href="index.html?category=Tutorials">Tutorials</a>
+            </div>
+
+            <div class="nav-actions">
+                <div class="search-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInput" placeholder="Search posts..." />
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌓</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================
+               DISCLAIMER PAGE CONTENT
+            ============================================ -->
+    <main>
+        <div class="container">
+            <div class="disclaimer-page">
+
+                <!-- Header -->
+                <div class="page-header">
+                    <span class="badge">Disclaimer</span>
+                    <h1>Important <span>Information</span></h1>
+                    <p>Please read this disclaimer carefully before using DevBlog. It outlines the limitations and responsibilities regarding the content on our website.</p>
+                </div>
+
+                <div class="last-updated">
+                    📅 Last Updated: August 24, 2026
+                </div>
+
+                <!-- Table of Contents -->
+                <div class="toc">
+                    <h3>📑 Table of Contents</h3>
+                    <ul>
+                        <li><a href="#general">1. General Disclaimer</a></li>
+                        <li><a href="#educational">2. Educational Content</a></li>
+                        <li><a href="#code-accuracy">3. Code Accuracy</a></li>
+                        <li><a href="#professional">4. Professional Advice</a></li>
+                        <li><a href="#external-links">5. External Links</a></li>
+                        <li><a href="#affiliate">6. Affiliate Disclosure</a></li>
+                        <li><a href="#accuracy">7. Accuracy of Information</a></li>
+                        <li><a href="#liability">8. Liability Limitation</a></li>
+                        <li><a href="#changes">9. Changes to Disclaimer</a></li>
+                        <li><a href="#contact">10. Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Section 1 -->
+                <div class="disclaimer-section" id="general">
+                    <h2><span class="icon">📢</span> 1. General Disclaimer</h2>
+                    <p>The information provided on DevBlog is for general informational and educational purposes only. While we strive to ensure the accuracy and reliability of our content, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability of the information contained on our website.</p>
+                    <div class="highlight-box">
+                        <p>⚠️ All content on DevBlog is provided "as-is" without any warranties of any kind. Use at your own risk.</p>
+                    </div>
+                </div>
+
+                <!-- Section 2 -->
+                <div class="disclaimer-section" id="educational">
+                    <h2><span class="icon">📚</span> 2. Educational Content</h2>
+                    <p>DevBlog is an educational platform designed to help developers learn web development skills. Our tutorials, code examples, and guides are intended for learning purposes only. They are not intended as professional or production-ready solutions.</p>
+                    <ul>
+                        <li>Content is for learning purposes only</li>
+                        <li>Not a substitute for professional training</li>
+                        <li>Always test code in a safe environment</li>
+                        <li>Verify information with multiple sources</li>
+                    </ul>
+                </div>
+
+                <!-- Section 3 -->
+                <div class="disclaimer-section" id="code-accuracy">
+                    <h2><span class="icon">💻</span> 3. Code Accuracy</h2>
+                    <p>We make every effort to ensure that code examples and tutorials are accurate and functional at the time of publication. However, we cannot guarantee that all code will work in every environment or that it is free from errors or vulnerabilities.</p>
+                    <ul>
+                        <li>Code is provided for educational purposes only</li>
+                        <li>Always test code in your own environment</li>
+                        <li>We are not responsible for any damage caused by using our code</li>
+                        <li>Consider security best practices when implementing code</li>
+                    </ul>
+                    <div class="highlight-box">
+                        <p>🔒 We recommend consulting official documentation and conducting thorough testing before implementing any code in production environments.</p>
+                    </div>
+                </div>
+
+                <!-- Section 4 -->
+                <div class="disclaimer-section" id="professional">
+                    <h2><span class="icon">👨‍⚖️</span> 4. Professional Advice</h2>
+                    <p>The content on DevBlog is for educational purposes only and should not be considered professional advice. Our tutorials and guides are not a substitute for professional consultation or services.</p>
+                    <ul>
+                        <li>Not legal advice</li>
+                        <li>Not financial advice</li>
+                        <li>Not professional consulting</li>
+                        <li>Always consult qualified professionals for specific needs</li>
+                    </ul>
+                </div>
+
+                <!-- Section 5 -->
+                <div class="disclaimer-section" id="external-links">
+                    <h2><span class="icon">🔗</span> 5. External Links</h2>
+                    <p>DevBlog may contain links to external websites that are not operated or controlled by us. We have no control over the content, privacy policies, or practices of these third-party sites and do not endorse or assume responsibility for them.</p>
+                    <p>We encourage you to review the terms and privacy policies of any third-party websites you visit through links on our site.</p>
+                    <div class="highlight-box">
+                        <p>🔗 Links to external sites are provided for convenience and do not constitute endorsement or approval.</p>
+                    </div>
+                </div>
+
+                <!-- Section 6 -->
+                <div class="disclaimer-section" id="affiliate">
+                    <h2><span class="icon">💰</span> 6. Affiliate Disclosure</h2>
+                    <p>DevBlog may participate in affiliate marketing programs. This means we may earn commissions on purchases made through links to products or services on our website. However, this does not influence our content or recommendations.</p>
+                    <ul>
+                        <li>We only recommend products we believe in</li>
+                        <li>Affiliate links are clearly marked when present</li>
+                        <li>Our content is unbiased and objective</li>
+                        <li>Your trust is our top priority</li>
+                    </ul>
+                    <div class="highlight-box">
+                        <p>⭐ We are committed to maintaining transparency and integrity in all our recommendations.</p>
+                    </div>
+                </div>
+
+                <!-- Section 7 -->
+                <div class="disclaimer-section" id="accuracy">
+                    <h2><span class="icon">📊</span> 7. Accuracy of Information</h2>
+                    <p>We strive to provide accurate and up-to-date information. However, technology and web development practices evolve rapidly, and some content may become outdated. We make no guarantees about the accuracy, completeness, or timeliness of information on our site.</p>
+                    <ul>
+                        <li>Information may become outdated</li>
+                        <li>We encourage verifying information from official sources</li>
+                        <li>We reserve the right to update content at any time</li>
+                        <li>We are not responsible for errors or omissions</li>
+                    </ul>
+                </div>
+
+                <!-- Section 8 -->
+                <div class="disclaimer-section" id="liability">
+                    <h2><span class="icon">🚫</span> 8. Liability Limitation</h2>
+                    <p>To the fullest extent permitted by law, DevBlog and its owners, creators, and contributors shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising from your use of our website or the information contained therein.</p>
+                    <p>This includes, but is not limited to, loss of data, loss of profits, or any other damages, even if we have been advised of the possibility of such damages.</p>
+                </div>
+
+                <!-- Section 9 -->
+                <div class="disclaimer-section" id="changes">
+                    <h2><span class="icon">📝</span> 9. Changes to Disclaimer</h2>
+                    <p>We reserve the right to update this disclaimer at any time. We will notify you of any changes by updating the "Last Updated" date at the top of this page.</p>
+                    <p>Your continued use of DevBlog after any changes constitutes your acceptance of the updated disclaimer. We encourage you to review this page periodically.</p>
+                </div>
+
+                <!-- Section 10 -->
+                <div class="disclaimer-section" id="contact" style="border-color: var(--primary);">
+                    <h2><span class="icon">📧</span> 10. Contact Us</h2>
+                    <p>If you have any questions, concerns, or requests regarding this disclaimer, please contact us:</p>
+                    <p style="margin-top: 12px;">
+                        <strong>Email:</strong> <a href="mailto:legal@devblog.com">legal@devblog.com</a><br />
+                        <strong>Contact Form:</strong> <a href="contact.html">Contact Us</a>
+                    </p>
+                    <div class="highlight-box">
+                        <p>📬 We aim to respond to all inquiries within 24-48 hours.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- ============================================
+               FOOTER
+            ============================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-icon">&lt;/&gt;</span>
+                        Dev<span>Blog</span>
+                    </div>
+                    <p>Your trusted source for web development tutorials, coding tips, and practical guides for developers of all skill levels.</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Categories</h4>
+                        <a href="index.html?category=CSS">CSS</a>
+                        <a href="index.html?category=HTML">HTML</a>
+                        <a href="index.html?category=JavaScript">JavaScript</a>
+                        <a href="index.html?category=Tutorials">Tutorials</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="about.html">About Us</a>
+                        <a href="contact.html">Contact Us</a>
+                        <a href="privacy.html">Privacy Policy</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <a href="terms.html">Terms of Service</a>
+                        <a href="disclaimer.html">Disclaimer</a>
+                        <a href="sitemap.html">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 DevBlog. All rights reserved.</p>
+                <p>Built with ❤️ for developers</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================
+        // THEME MANAGEMENT
+        // ============================================
+        function getTheme() {
+            return localStorage.getItem('blog-theme') || 'light';
+        }
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('blog-theme', theme);
+            const toggle = document.getElementById('themeToggle');
+            if (toggle) toggle.textContent = theme === 'dark' ? '☀️' : '🌓';
+        }
+
+        setTheme(getTheme());
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('themeToggle');
+            if (toggle) {
+                toggle.addEventListener('click', () => {
+                    const current = getTheme();
+                    setTheme(current === 'dark' ? 'light' : 'dark');
+                });
+            }
+
+            // Mobile menu
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', () => {
+                    navLinks.classList.toggle('open');
+                });
+
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('open');
+                    });
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

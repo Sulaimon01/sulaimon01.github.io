@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevBlog Admin - All Posts</title>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js">
+    </script>
+
+    <style>
+        /* ============================================
+                   RESET & BASE
+                ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            color: #1a202c;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ============================================
+                   SIDEBAR
+                ============================================ */
+        .sidebar {
+            width: 250px;
+            background: #1a202c;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .sidebar .logo {
+            padding: 24px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .sidebar .logo span {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 16px;
+            color: white;
+        }
+
+        .sidebar nav {
+            padding: 20px 0;
+            flex: 1;
+        }
+
+        .sidebar nav a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            color: #a0aec0;
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+            font-size: 15px;
+        }
+
+        .sidebar nav a:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+        }
+
+        .sidebar nav a.active {
+            background: rgba(102, 126, 234, 0.15);
+            color: white;
+            border-left-color: #667eea;
+        }
+
+        .sidebar nav a span {
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .sidebar-bottom {
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .sidebar-bottom a {
+            display: block;
+            padding: 10px 0;
+            color: #a0aec0;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+
+        .sidebar-bottom a:hover {
+            color: white;
+        }
+
+        .sidebar-bottom .logout-btn {
+            color: #fc8181;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 14px;
+            padding: 10px 0;
+            display: block;
+            width: 100%;
+            text-align: left;
+            font-family: inherit;
+        }
+
+        .sidebar-bottom .logout-btn:hover {
+            color: #feb2b2;
+        }
+
+        /* ============================================
+                   MAIN CONTENT
+                ============================================ */
+        .main-content {
+            margin-left: 250px;
+            flex: 1;
+            min-height: 100vh;
+            padding: 0 32px 32px 32px;
+        }
+
+        /* ============================================
+                   TOP BAR
+                ============================================ */
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 12px;
+            background: #f0f2f5;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .topbar .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #1a202c;
+            cursor: pointer;
+            padding: 4px 8px;
+        }
+
+        .topbar h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .topbar .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .topbar .user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .topbar .user .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .topbar .user strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .topbar .user small {
+            font-size: 12px;
+            color: #718096;
+        }
+
+        /* ============================================
+                   TOOLBAR (Search & Filter)
+                ============================================ */
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 24px;
+            align-items: center;
+        }
+
+        .toolbar .search-box {
+            flex: 1;
+            min-width: 200px;
+            position: relative;
+        }
+
+        .toolbar .search-box input {
+            width: 100%;
+            padding: 10px 16px 10px 40px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s;
+            background: white;
+        }
+
+        .toolbar .search-box input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .toolbar .search-box .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #a0aec0;
+            font-size: 18px;
+        }
+
+        .toolbar .filter-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .toolbar select {
+            padding: 10px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            background: white;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .toolbar select:focus {
+            border-color: #667eea;
+        }
+
+        .toolbar .new-post-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .toolbar .new-post-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        /* ============================================
+                   POSTS TABLE
+                ============================================ */
+        .posts-table-container {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+        }
+
+        .posts-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .posts-table thead {
+            background: #f7fafc;
+        }
+
+        .posts-table th {
+            text-align: left;
+            padding: 14px 20px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #718096;
+            font-weight: 600;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .posts-table td {
+            padding: 14px 20px;
+            border-bottom: 1px solid #f7fafc;
+            vertical-align: middle;
+            font-size: 14px;
+        }
+
+        .posts-table tbody tr:hover {
+            background: #f7fafc;
+        }
+
+        .posts-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .posts-table .post-title-cell {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .posts-table .post-thumb {
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 11px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .posts-table .post-title-cell strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .posts-table .post-title-cell small {
+            font-size: 12px;
+            color: #a0aec0;
+        }
+
+        .posts-table .category-badge {
+            background: #edf2f7;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #4a5568;
+            display: inline-block;
+        }
+
+        .posts-table .status-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .posts-table .status-badge.published {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+
+        .posts-table .status-badge.draft {
+            background: #fefcbf;
+            color: #975a16;
+        }
+
+        .posts-table .action-btns {
+            display: flex;
+            gap: 6px;
+        }
+
+        .posts-table .action-btns .btn-action {
+            padding: 6px 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .posts-table .action-btns .btn-edit {
+            background: #edf2f7;
+            color: #4a5568;
+        }
+
+        .posts-table .action-btns .btn-edit:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .posts-table .action-btns .btn-delete {
+            background: #fed7d7;
+            color: #9b2c2c;
+        }
+
+        .posts-table .action-btns .btn-delete:hover {
+            background: #fc8181;
+            color: white;
+        }
+
+        .posts-table .date-cell {
+            color: #a0aec0;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        /* ============================================
+                   EMPTY STATE
+                ============================================ */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #718096;
+        }
+
+        .empty-state .empty-icon {
+            font-size: 56px;
+            opacity: 0.3;
+            margin-bottom: 16px;
+        }
+
+        .empty-state h3 {
+            font-size: 20px;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+
+        .empty-state p {
+            margin-bottom: 16px;
+        }
+
+        .empty-state a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .empty-state a:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================================
+                   LOADING
+                ============================================ */
+        .loading-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #a0aec0;
+        }
+
+        .loading-state .spinner {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            border: 4px solid #edf2f7;
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 12px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ============================================
+                   ALERT
+                ============================================ */
+        .alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .alert-error {
+            background: #fed7d7;
+            color: #9b2c2c;
+            border: 1px solid #feb2b2;
+            display: block;
+        }
+
+        .alert-success {
+            background: #c6f6d5;
+            color: #22543d;
+            border: 1px solid #9ae6b4;
+            display: block;
+        }
+
+        /* ============================================
+                   DELETE MODAL
+                ============================================ */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 440px;
+            width: 100%;
+            animation: modalSlide 0.3s ease-out;
+        }
+
+        @keyframes modalSlide {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal .modal-icon {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .modal h3 {
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .modal p {
+            text-align: center;
+            color: #718096;
+            font-size: 15px;
+            margin-bottom: 24px;
+        }
+
+        .modal .modal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .modal .modal-actions .btn {
+            padding: 10px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .modal .modal-actions .btn-cancel {
+            background: #edf2f7;
+            color: #4a5568;
+        }
+
+        .modal .modal-actions .btn-cancel:hover {
+            background: #e2e8f0;
+        }
+
+        .modal .modal-actions .btn-confirm {
+            background: #fc8181;
+            color: white;
+        }
+
+        .modal .modal-actions .btn-confirm:hover {
+            background: #e53e3e;
+        }
+
+        /* ============================================
+                   PAGINATION
+                ============================================ */
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            border-top: 1px solid #e2e8f0;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .pagination .info {
+            font-size: 14px;
+            color: #718096;
+        }
+
+        .pagination .pages {
+            display: flex;
+            gap: 4px;
+        }
+
+        .pagination .pages button {
+            padding: 6px 14px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .pagination .pages button:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .pagination .pages button.active {
+            background: #667eea;
+            border-color: #667eea;
+            color: white;
+        }
+
+        .pagination .pages button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        /* ============================================
+                   RESPONSIVE
+                ============================================ */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 280px;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
+
+            .sidebar-overlay.active {
+                display: block;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 0 16px 16px 16px;
+            }
+
+            .topbar {
+                padding: 16px 0;
+            }
+
+            .topbar .menu-toggle {
+                display: block;
+            }
+
+            .topbar h1 {
+                font-size: 20px;
+            }
+
+            .topbar .user strong {
+                display: none;
+            }
+
+            .toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .toolbar .filter-group {
+                flex-wrap: wrap;
+            }
+
+            .toolbar .filter-group select {
+                flex: 1;
+                min-width: 0;
+            }
+
+            .posts-table-container {
+                overflow-x: auto;
+            }
+
+            .posts-table {
+                min-width: 600px;
+            }
+
+            .pagination {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .topbar .user small {
+                display: none;
+            }
+
+            .toolbar .filter-group {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .toolbar .filter-group select {
+                width: 100%;
+            }
+
+            .toolbar .new-post-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== SIDEBAR OVERLAY (Mobile) ===== -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo">
+            <span>&lt;/&gt;</span>
+            DevBlog
+        </div>
+
+        <nav>
+            <a href="dashboard.html">
+                <span>▦</span>
+                Dashboard
+            </a>
+            <a href="new-post.html">
+                <span>＋</span>
+                New Post
+            </a>
+            <a href="all-posts.html" class="active">
+                <span>▤</span>
+                All Posts
+            </a>
+            <a href="settings.html">
+                <span>⚙</span>
+                Settings
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="#">↗ View Website</a>
+            <button class="logout-btn" id="logoutBtn">⇥ Logout</button>
+        </div>
+    </aside>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+            <div>
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <h1>All Posts</h1>
+            </div>
+            <div class="topbar-right">
+                <div class="user">
+                    <div class="avatar" id="userAvatar">D</div>
+                    <div>
+                        <strong id="userName">Admin</strong>
+                        <small>Administrator</small>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- CONTENT -->
+        <section class="content">
+
+            <!-- Alert -->
+            <div id="alertMessage" class="alert"></div>
+
+            <!-- Toolbar -->
+            <div class="toolbar">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInput" placeholder="Search posts by title..." />
+                </div>
+                <div class="filter-group">
+                    <select id="statusFilter">
+                        <option value="all">All Status</option>
+                        <option value="published">Published</option>
+                        <option value="draft">Draft</option>
+                    </select>
+                    <select id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="CSS">CSS</option>
+                        <option value="HTML">HTML</option>
+                        <option value="JavaScript">JavaScript</option>
+                        <option value="React">React</option>
+                        <option value="Vue">Vue</option>
+                        <option value="Angular">Angular</option>
+                        <option value="Node">Node.js</option>
+                        <option value="Python">Python</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <a href="new-post.html" class="new-post-btn">+ New Post</a>
+                </div>
+            </div>
+
+            <!-- Posts Table -->
+            <div class="posts-table-container">
+                <table class="posts-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th style="text-align:right;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="postsBody">
+                        <tr>
+                            <td colspan="5">
+                                <div class="loading-state">
+                                    <div class="spinner"></div>
+                                    <p>Loading posts...</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Pagination -->
+                <div class="pagination" id="pagination">
+                    <span class="info" id="paginationInfo">Showing 0 posts</span>
+                    <div class="pages" id="paginationPages">
+                        <button id="prevPage" disabled>←</button>
+                        <button id="nextPage" disabled>→</button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ===== DELETE CONFIRMATION MODAL ===== -->
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal">
+            <div class="modal-icon">🗑️</div>
+            <h3>Delete Post</h3>
+            <p>Are you sure you want to delete this post? This action cannot be undone.</p>
+            <div class="modal-actions">
+                <button class="btn btn-cancel" id="modalCancel">Cancel</button>
+                <button class="btn btn-confirm" id="modalConfirm">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // 1. FIREBASE CONFIGURATION
+        // ============================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyDQ0B84HytHoXpMU5puN4snng3PrEucPzo",
+            authDomain: "mydevblogweb.firebaseapp.com",
+            projectId: "mydevblogweb",
+            storageBucket: "mydevblogweb.firebasestorage.app",
+            messagingSenderId: "916876510396",
+            appId: "1:916876510396:web:a1b3a2ed74367c6ab43cb9"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        db.enablePersistence()
+            .catch((err) => console.warn('Persistence error:', err));
+
+        // ============================================
+        // 2. DOM ELEMENTS
+        // ============================================
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const menuToggle = document.getElementById('menuToggle');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const userName = document.getElementById('userName');
+        const userAvatar = document.getElementById('userAvatar');
+
+        const postsBody = document.getElementById('postsBody');
+        const searchInput = document.getElementById('searchInput');
+        const statusFilter = document.getElementById('statusFilter');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const alertMessage = document.getElementById('alertMessage');
+
+        const paginationInfo = document.getElementById('paginationInfo');
+        const prevPageBtn = document.getElementById('prevPage');
+        const nextPageBtn = document.getElementById('nextPage');
+
+        const deleteModal = document.getElementById('deleteModal');
+        const modalCancel = document.getElementById('modalCancel');
+        const modalConfirm = document.getElementById('modalConfirm');
+
+        // ============================================
+        // 3. STATE
+        // ============================================
+        let allPosts = [];
+        let filteredPosts = [];
+        let currentPage = 1;
+        const postsPerPage = 10;
+        let postToDelete = null;
+
+        // ============================================
+        // 4. AUTHENTICATION CHECK
+        // ============================================
+        auth.onAuthStateChanged((user) => {
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const email = user.email || 'Admin';
+            userName.textContent = email.split('@')[0];
+            userAvatar.textContent = email.charAt(0).toUpperCase();
+
+            loadPosts();
+        });
+
+        // ============================================
+        // 5. LOGOUT
+        // ============================================
+        async function handleLogout() {
+            if (confirm('Are you sure you want to logout?')) {
+                try {
+                    await auth.signOut();
+                    window.location.href = 'login.html';
+                } catch (error) {
+                    console.error('Logout error:', error);
+                    alert('Error logging out. Please try again.');
+                }
+            }
+        }
+
+        logoutBtn.addEventListener('click', handleLogout);
+
+        // ============================================
+        // 6. MOBILE MENU
+        // ============================================
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            sidebarOverlay.classList.toggle('active');
+        });
+
+        sidebarOverlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('active');
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                sidebar.classList.remove('open');
+                sidebarOverlay.classList.remove('active');
+            }
+        });
+
+        // ============================================
+        // 7. HELPER FUNCTIONS
+        // ============================================
+        function showAlert(message, type = 'error') {
+            alertMessage.textContent = message;
+            alertMessage.className = `alert alert-${type}`;
+
+            clearTimeout(alertMessage._timeout);
+            alertMessage._timeout = setTimeout(() => {
+                alertMessage.className = 'alert';
+            }, 5000);
+        }
+
+        function getCategoryColor(category) {
+            const colors = {
+                'css': '#667eea',
+                'html': '#e53e3e',
+                'javascript': '#d69e2e',
+                'react': '#38b2ac',
+                'vue': '#48bb78',
+                'angular': '#e53e3e',
+                'node': '#68d391',
+                'python': '#4299e1',
+                'default': '#a0aec0'
+            };
+            const key = category ? category.toLowerCase() : 'default';
+            return colors[key] || colors.default;
+        }
+
+        function getCategoryInitials(category) {
+            if (!category) return '?';
+            return category.substring(0, 2).toUpperCase();
+        }
+
+        function formatDate(timestamp) {
+            if (!timestamp) return 'N/A';
+            const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+            return date.toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+            });
+        }
+
+        // ============================================
+        // 8. LOAD POSTS
+        // ============================================
+        async function loadPosts() {
+            try {
+                const snapshot = await db.collection('posts')
+                    .orderBy('createdAt', 'desc')
+                    .get();
+
+                allPosts = [];
+                snapshot.forEach((doc) => {
+                    allPosts.push({
+                        id: doc.id,
+                        ...doc.data()
+                    });
+                });
+
+                applyFilters();
+
+            } catch (error) {
+                console.error('Error loading posts:', error);
+                postsBody.innerHTML = `
+                            <tr>
+                                <td colspan="5">
+                                    <div class="empty-state">
+                                        <div class="empty-icon">⚠️</div>
+                                        <h3>Error Loading Posts</h3>
+                                        <p>Please refresh the page and try again.</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        `;
+            }
+        }
+
+        // ============================================
+        // 9. FILTER & SEARCH
+        // ============================================
+        function applyFilters() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            const status = statusFilter.value;
+            const category = categoryFilter.value;
+
+            filteredPosts = allPosts.filter(post => {
+                // Search filter
+                if (searchTerm && !post.title?.toLowerCase().includes(searchTerm)) {
+                    return false;
+                }
+
+                // Status filter
+                if (status !== 'all' && post.status !== status) {
+                    return false;
+                }
+
+                // Category filter
+                if (category !== 'all' && post.category !== category) {
+                    return false;
+                }
+
+                return true;
+            });
+
+            currentPage = 1;
+            renderPosts();
+        }
+
+        searchInput.addEventListener('input', applyFilters);
+        statusFilter.addEventListener('change', applyFilters);
+        categoryFilter.addEventListener('change', applyFilters);
+
+        // ============================================
+        // 10. RENDER POSTS
+        // ============================================
+        function renderPosts() {
+            const totalPosts = filteredPosts.length;
+
+            if (totalPosts === 0) {
+                postsBody.innerHTML = `
+                            <tr>
+                                <td colspan="5">
+                                    <div class="empty-state">
+                                        <div class="empty-icon">📝</div>
+                                        <h3>No Posts Found</h3>
+                                        <p>${allPosts.length === 0 ? 'Create your first blog post!' : 'Try adjusting your search or filters.'}</p>
+                                        ${allPosts.length === 0 ? '<a href="new-post.html">+ Create New Post</a>' : ''}
+                                    </div>
+                                </td>
+                            </tr>
+                        `;
+                paginationInfo.textContent = 'Showing 0 posts';
+                prevPageBtn.disabled = true;
+                nextPageBtn.disabled = true;
+                return;
+            }
+
+            // Calculate pagination
+            const totalPages = Math.ceil(totalPosts / postsPerPage);
+            const startIndex = (currentPage - 1) * postsPerPage;
+            const endIndex = Math.min(startIndex + postsPerPage, totalPosts);
+            const pagePosts = filteredPosts.slice(startIndex, endIndex);
+
+            // Render rows
+            let html = '';
+            pagePosts.forEach((post) => {
+                const color = getCategoryColor(post.category);
+                const initials = getCategoryInitials(post.category);
+                const statusClass = post.status === 'published' ? 'published' : 'draft';
+                const statusLabel = post.status === 'published' ? 'Published' : 'Draft';
+
+                html += `
+                            <tr>
+                                <td>
+                                    <div class="post-title-cell">
+                                        <div class="post-thumb" style="background: ${color}">
+                                            ${initials}
+                                        </div>
+                                        <div>
+                                            <strong>${post.title || 'Untitled'}</strong>
+                                            <small>${post.excerpt ? post.excerpt.substring(0, 60) + (post.excerpt.length > 60 ? '...' : '') : 'No excerpt'}</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="category-badge">${post.category || 'Uncategorized'}</span></td>
+                                <td><span class="status-badge ${statusClass}">${statusLabel}</span></td>
+                                <td class="date-cell">${formatDate(post.createdAt)}</td>
+                                <td style="text-align:right;">
+                                    <div class="action-btns" style="justify-content:flex-end;">
+                                        <a href="new-post.html?id=${post.id}" class="btn-action btn-edit">✎ Edit</a>
+                                        <button class="btn-action btn-delete" data-id="${post.id}">×</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        `;
+            });
+
+            postsBody.innerHTML = html;
+
+            // Add delete event listeners
+            document.querySelectorAll('.btn-delete').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.dataset.id;
+                    const post = allPosts.find(p => p.id === id);
+                    if (post) {
+                        postToDelete = post;
+                        deleteModal.classList.add('active');
+                    }
+                });
+            });
+
+            // Update pagination
+            paginationInfo.textContent = `Showing ${startIndex + 1}-${endIndex} of ${totalPosts} posts`;
+
+            // Update page buttons
+            renderPagination(totalPages);
+        }
+
+        // ============================================
+        // 11. PAGINATION
+        // ============================================
+        function renderPagination(totalPages) {
+            prevPageBtn.disabled = currentPage <= 1;
+            nextPageBtn.disabled = currentPage >= totalPages;
+
+            // Remove old page buttons (keep prev/next)
+            const pagesContainer = document.getElementById('paginationPages');
+            const prevBtn = pagesContainer.querySelector('#prevPage');
+            const nextBtn = pagesContainer.querySelector('#nextPage');
+
+            // Clear all except prev and next
+            while (pagesContainer.children.length > 2) {
+                pagesContainer.removeChild(pagesContainer.children[0]);
+            }
+
+            // Add page buttons
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement('button');
+                btn.textContent = i;
+                btn.className = i === currentPage ? 'active' : '';
+                btn.addEventListener('click', () => {
+                    currentPage = i;
+                    renderPosts();
+                });
+                pagesContainer.insertBefore(btn, nextBtn);
+            }
+        }
+
+        prevPageBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                renderPosts();
+            }
+        });
+
+        nextPageBtn.addEventListener('click', () => {
+            const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderPosts();
+            }
+        });
+
+        // ============================================
+        // 12. DELETE POST
+        // ============================================
+        async function confirmDelete() {
+            if (!postToDelete) return;
+
+            try {
+                modalConfirm.disabled = true;
+                modalConfirm.textContent = 'Deleting...';
+
+                await db.collection('posts').doc(postToDelete.id).delete();
+
+                // Remove from local arrays
+                allPosts = allPosts.filter(p => p.id !== postToDelete.id);
+                filteredPosts = filteredPosts.filter(p => p.id !== postToDelete.id);
+
+                showAlert('Post deleted successfully!', 'success');
+                postToDelete = null;
+                deleteModal.classList.remove('active');
+
+                renderPosts();
+
+            } catch (error) {
+                console.error('Error deleting post:', error);
+                showAlert('Error deleting post. Please try again.', 'error');
+            } finally {
+                modalConfirm.disabled = false;
+                modalConfirm.textContent = 'Delete';
+            }
+        }
+
+        // Modal events
+        modalCancel.addEventListener('click', () => {
+            deleteModal.classList.remove('active');
+            postToDelete = null;
+        });
+
+        modalConfirm.addEventListener('click', confirmDelete);
+
+        // Close modal on overlay click
+        deleteModal.addEventListener('click', (e) => {
+            if (e.target === deleteModal) {
+                deleteModal.classList.remove('active');
+                postToDelete = null;
+            }
+        });
+
+        // ============================================
+        // 13. REAL-TIME UPDATES
+        // ============================================
+        db.collection('posts')
+            .orderBy('createdAt', 'desc')
+            .onSnapshot(() => {
+                loadPosts();
+            });
+
+        console.log('✅ All Posts page ready.');
+    </script>
+
+</body>
+</html>
